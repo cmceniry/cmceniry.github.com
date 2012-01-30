@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[CorgaLabs Blog]]></title>
-  <link href="http://cmceniry.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: HouseKeeping | CorgaLabs Blog]]></title>
+  <link href="http://cmceniry.github.com/blog/categories/housekeeping/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
   <updated>2012-01-29T22:08:51-08:00</updated>
   <id>http://cmceniry.github.com/</id>
@@ -21,26 +21,26 @@
     <content type="html"><![CDATA[<p>Got <a href="http://octopress.org/">Octopress</a> up and running. I like the idea
 of a staticly deployed blog using a simple wiki-like mark up
 language. I lose comments, but part of me thinks that having a blog is
-a minimum for participating in the discussion. It&#8217;s a bit much, but
-I&#8217;ll wait to see if it becomes an issue and figure it out then. For
-now, I have a blog, so I&#8217;m going to focus on the writing.</p>
+a minimum for participating in the discussion. It's a bit much, but
+I'll wait to see if it becomes an issue and figure it out then. For
+now, I have a blog, so I'm going to focus on the writing.</p>
 
 <p>Ran into a few issues setting up Octopress - somewhat my own
-fault. The first was that I switched from rvm to rbenv. Wasn&#8217;t really
+fault. The first was that I switched from rvm to rbenv. Wasn't really
 an issue, but rvm feels more ready for prime time on OSX Lion. I had
 trouble getting ruby to build, and had to switch from LLVM to GCC. I
-would think that it shouldn&#8217;t matter, but it seems to. I
-<a href="https://github.com/kennethreitz/osx-gcc-installer/downloads">kennethretiz&#8217;s prebuilt packages</a>
+would think that it shouldn't matter, but it seems to. I
+<a href="https://github.com/kennethreitz/osx-gcc-installer/downloads">kennethretiz's prebuilt packages</a>
 to be the best install.</p>
 
-<p>After that, got to the point where I do &#8216;bundle install&#8217; from the
+<p>After that, got to the point where I do 'bundle install' from the
 Octopress clone, and it started complaining about not finding
-&#8216;stdio.h&#8217; when building fsevent_watch. <a href="https://github.com/imathis/octopress/issues/320">Others have seen this
+'stdio.h' when building fsevent_watch. <a href="https://github.com/imathis/octopress/issues/320">Others have seen this
 before</a>, but really
 the issue is being <a href="https://github.com/thibaudgg/rb-fsevent/issues/20">addressed</a>
 by the fsevent gem. Ends up being some fun differences between LLVM
 and GCC again. I switched over to the prebuilt fsevent gem, and that
-worked. Just a simple change in &#8216;Gemfile&#8217;:</p>
+worked. Just a simple change in 'Gemfile':</p>
 
 <pre><code>gem 'rubypants'
 -gem 'rb-fsevent'
@@ -51,23 +51,23 @@ gem 'stringex'
 <p>Those are the main build issues, but also ran into a couple of issues
 working with Octopress.</p>
 
-<p>The first usage issue is that I&#8217;m still trying to figure out the
+<p>The first usage issue is that I'm still trying to figure out the
 overall git workflow. You do a clone of the Octopress repo, and then
 work within that clone. This seems a bit unclean to me. I want to keep
 my actual blog source and the Octopress source separate, even if the
-Octopress source is tracking. Add to that that I&#8217;m sending the site up
-to Github&#8217;s personal pages for hosting it, so that has its own
+Octopress source is tracking. Add to that that I'm sending the site up
+to Github's personal pages for hosting it, so that has its own
 repo. Just seems like this will bite me at some point.</p>
 
-<p>The second issue is just getting familiar with markdown. I&#8217;m finding
-out some of its limits, like how it can&#8217;t embed block quotes inside
+<p>The second issue is just getting familiar with markdown. I'm finding
+out some of its limits, like how it can't embed block quotes inside
 numbered items. Nothing major, just learning myself.</p>
 
 <p>But, Octopress is up and running, and posting to the Intarwebs, so
 that has to be considered a success. Now I get to move on to the real
 content.</p>
 
-<p>&#8211;mac</p>
+<p>--mac</p>
 ]]></content>
   </entry>
   
