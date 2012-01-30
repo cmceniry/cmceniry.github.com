@@ -4,7 +4,7 @@
   <title><![CDATA[CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2012-01-29T17:12:01-08:00</updated>
+  <updated>2012-01-29T17:50:21-08:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -12,14 +12,5 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[First post]]></title>
-    <link href="http://cmceniry.github.com/blog/2012/01/29/first-post/"/>
-    <updated>2012-01-29T16:44:00-08:00</updated>
-    <id>http://cmceniry.github.com/blog/2012/01/29/first-post</id>
-    <content type="html"><![CDATA[<p>Just a test of the first post</p>
-]]></content>
-  </entry>
   
 </feed>
