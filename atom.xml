@@ -4,7 +4,7 @@
   <title><![CDATA[CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2012-01-29T22:08:51-08:00</updated>
+  <updated>2012-02-05T23:46:55-08:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Language matters: Nitpik with Chef]]></title>
+    <link href="http://cmceniry.github.com/blog/2012/02/05/language-matters-nitpik-with-chef/"/>
+    <updated>2012-02-05T23:14:00-08:00</updated>
+    <id>http://cmceniry.github.com/blog/2012/02/05/language-matters-nitpik-with-chef</id>
+    <content type="html"><![CDATA[<p>For a while now, Chef has bothered me. Some of it I can blame on the
+server setup (pull/push and exposure of general manifests), but
+there&#8217;s been something that&#8217;s been bothering that I hadn&#8217;t been able
+to put my finger on&#8230; until now.</p>
+
+<p>First, I&#8217;m going to come out and admit my bias to a declarative model
+over an imperative model. I won&#8217;t go into why. Burgess does a much
+better job <a href="http://cfengine.com/markburgess/blog_order.html">describing this</a>.</p>
+
+<p>My issue with Chef comes down to one word: action.</p>
+
+<pre><code>package "ntp" do
+  action :install
+end
+</code></pre>
+
+<p>Now, to be fair, this is a very declarative description. If you dig
+into what it&#8217;s doing, you&#8217;ll find that it&#8217;s interrogating the system
+and only installing the package if it needs to, or alternatively,
+it&#8217;ll make sure that the package exists. If that&#8217;s the case, it&#8217;s not
+&#8220;install&#8221;ing every time, it&#8217;s making sure it&#8217;s
+&#8220;install&#8221;ed. &#8220;Install&#8221;ing is a verb (it&#8217;s saying &#8220;action&#8221;), but
+&#8220;Install&#8221;ed is a noun (state).</p>
+
+<p>Why does this matter? Let&#8217;s go back to cfengine:</p>
+
+<pre><code>commands:
+  "yum install -y ntp"
+    ifvarclass =&gt; "!ntp_installed"
+</code></pre>
+
+<p>Now, we&#8217;re further down the slope. This is a command/verb/action -
+there&#8217;s now way around that. We&#8217;ve detached the descriptive goal of
+what we want from how we&#8217;ve written. We have to know that our
+convention for an installed package is to use that command structure,
+and to make sure there&#8217;s a class that checks for if ntp is installed
+or not. The var is in the check, not in the overall description.</p>
+
+<p>So, why is Puppet better?</p>
+
+<pre><code>package { "ntp":
+  ensure =&gt; present
+}
+</code></pre>
+
+<p>There&#8217;s no confusion around this one. It&#8217;s clearly saying make sure
+this package is present/installed. The magic of how that happens is in
+the underlying resource abstraction layer, which is cool in and of
+itself, but it&#8217;s real win is that it allows you to continue thinking
+in a declarative way, not in an imperative way. There&#8217;s no mental
+flipping back and forth.</p>
+
+<p>Ok - so why does <em>that</em> matter?</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Linguistic_relativity">Language matters</a>.
+Language influences the way you conceptualize a problem, plain and
+simple. The BDD guys hark on this as well. I think for sysadmining
+roles to move forward, we need to think in a declarative way. Yes,
+there are times for an imperative method, but not in system
+descriptions.</p>
+
+<p>So, it&#8217;s a nitpik, but it&#8217;s one that can have far reaching impact.</p>
+
+<p>And yes, I know you can do execs in Puppet, so you can shoot yourself
+in the foot, but you&#8217;ll have less misfires with Puppet than with other
+tools because of the way it makes you think.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[First post]]></title>

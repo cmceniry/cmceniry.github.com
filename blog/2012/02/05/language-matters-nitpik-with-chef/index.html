@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>CorgaLabs Blog</title>
+  <title>Language matters: Nitpik with Chef - CorgaLabs Blog</title>
   <meta name="author" content="Chris McEniry">
 
   
@@ -20,7 +20,7 @@ there&#8217;s &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cmceniry.github.com">
+  <link rel="canonical" href="http://cmceniry.github.com/blog/2012/02/05/language-matters-nitpik-with-chef">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -64,15 +64,12 @@ there&#8217;s &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/02/05/language-matters-nitpik-with-chef/">Language Matters: Nitpik With Chef</a></h1>
+      <h1 class="entry-title">Language Matters: Nitpik With Chef</h1>
     
     
       <p class="meta">
@@ -95,7 +92,7 @@ there&#8217;s &hellip;">
   </header>
 
 
-  <div class="entry-content"><p>For a while now, Chef has bothered me. Some of it I can blame on the
+<div class="entry-content"><p>For a while now, Chef has bothered me. Some of it I can blame on the
 server setup (pull/push and exposure of general manifests), but
 there&#8217;s been something that&#8217;s been bothering that I hadn&#8217;t been able
 to put my finger on&#8230; until now.</p>
@@ -162,22 +159,16 @@ descriptions.</p>
 in the foot, but you&#8217;ll have less misfires with Puppet than with other
 tools because of the way it makes you think.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/29/first-post/">First Post</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chris McEniry</span></span>
+
+      
 
 
 
@@ -189,76 +180,38 @@ tools because of the way it makes you think.</p>
   
 
 
-<time datetime="2012-01-29T16:44:00-08:00" pubdate data-updated="true">Jan 29<span>th</span>, 2012</time>
-        
-      </p>
+<time datetime="2012-02-05T23:14:00-08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/configuration-management/'>Configuration Management</a>, <a class='category' href='/blog/categories/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>Got <a href="http://octopress.org/">Octopress</a> up and running. I like the idea
-of a staticly deployed blog using a simple wiki-like mark up
-language. I lose comments, but part of me thinks that having a blog is
-a minimum for participating in the discussion. It&#8217;s a bit much, but
-I&#8217;ll wait to see if it becomes an issue and figure it out then. For
-now, I have a blog, so I&#8217;m going to focus on the writing.</p>
-
-<p>Ran into a few issues setting up Octopress - somewhat my own
-fault. The first was that I switched from rvm to rbenv. Wasn&#8217;t really
-an issue, but rvm feels more ready for prime time on OSX Lion. I had
-trouble getting ruby to build, and had to switch from LLVM to GCC. I
-would think that it shouldn&#8217;t matter, but it seems to. I
-<a href="https://github.com/kennethreitz/osx-gcc-installer/downloads">kennethretiz&#8217;s prebuilt packages</a>
-to be the best install.</p>
-
-<p>After that, got to the point where I do &#8216;bundle install&#8217; from the
-Octopress clone, and it started complaining about not finding
-&#8216;stdio.h&#8217; when building fsevent_watch. <a href="https://github.com/imathis/octopress/issues/320">Others have seen this
-before</a>, but really
-the issue is being <a href="https://github.com/thibaudgg/rb-fsevent/issues/20">addressed</a>
-by the fsevent gem. Ends up being some fun differences between LLVM
-and GCC again. I switched over to the prebuilt fsevent gem, and that
-worked. Just a simple change in &#8216;Gemfile&#8217;:</p>
-
-<pre><code>gem 'rubypants'
--gem 'rb-fsevent'
-+gem 'rb-fsevent', :git =&gt; 'git://github.com/ttilley/rb-fsevent.git', :branch =&gt; 'pre-compiled-gem-one-off'
-gem 'stringex'
-</code></pre>
-
-<p>Those are the main build issues, but also ran into a couple of issues
-working with Octopress.</p>
-
-<p>The first usage issue is that I&#8217;m still trying to figure out the
-overall git workflow. You do a clone of the Octopress repo, and then
-work within that clone. This seems a bit unclean to me. I want to keep
-my actual blog source and the Octopress source separate, even if the
-Octopress source is tracking. Add to that that I&#8217;m sending the site up
-to Github&#8217;s personal pages for hosting it, so that has its own
-repo. Just seems like this will bite me at some point.</p>
-
-<p>The second issue is just getting familiar with markdown. I&#8217;m finding
-out some of its limits, like how it can&#8217;t embed block quotes inside
-numbered items. Nothing major, just learning myself.</p>
-
-<p>But, Octopress is up and running, and posting to the Intarwebs, so
-that has to be considered a success. Now I get to move on to the real
-content.</p>
-
-<p>&#8211;mac</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cmceniry.github.com/blog/2012/02/05/language-matters-nitpik-with-chef/" data-via="" data-counturl="http://cmceniry.github.com/blog/2012/02/05/language-matters-nitpik-with-chef/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/01/29/first-post/" title="Previous Post: First post">&laquo; First post</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -283,6 +236,7 @@ content.</p>
 
   
 </aside>
+
 
     </div>
   </div>
