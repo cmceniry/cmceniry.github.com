@@ -1,0 +1,78 @@
+---
+layout: post
+title: "In which Pooh is shown how 'Enterprise' can be a bug instead of a feature..."
+date: 2012-03-03 22:43
+comments: true
+categories: 
+- Enterpise
+- Vendors
+- Products
+---
+
+I was in a meeting the other day with a storage vendor selling their
+wares. He asked what we had at the time, and I let him know, and was
+extremely surprised by his response.
+
+"We're using X," I said.
+
+"Oh, well, that's nice, but if you want an Enterprise solution, you
+really need to be using ours," he spouted off smuggly.
+
+At which point, I had to say something. "It's statements like that
+that are why nobody likes [your company]."
+
+My boss laughed, I think mostly to defuse it a bit, but he also said
+"He's not kidding."
+
+And I wasn't. I really think that if you want to come into my house
+and try to sell me something, the number one thing you do is not
+insult me and what I currently have. At least, don't try it until you
+have an idea of how I feel about the solution. In this case, it wasn't
+that I was tied to it, but that that's what we had, plain and simple.
+
+The second thing that you may want to do is say something that
+actually adds value, not just belittles the competition. Ok, so let's
+assume that Enterprise is a good thing - why is your solution more
+Enterprise than what we have? In this case, he eventually added that
+it was twice as fast as our current solution.
+
+Which leads me to the third thing you may want to do. Don't try to
+sell on facts taken out of context. Ok, so it's twice as fast. It's
+also 4 years newer technology. According to Moore's Law applied to
+storage, if you're only twice as fast, you're half or a quarter of
+where you should be on the progression curve.
+
+So, what does Enterprise mean? Based on the vendor comments, it's:
+
+* Better than what we have right now,
+* Just something we should trust the vendor on, and
+* Behind on the technology curve.
+
+Great sales job.
+
+I think of the other "Enterprise" products that we have. Usually,
+there's one or more of the additional features:
+
+* Complex licensing model - $ per core up to this rate, and then $$ per
+  core past that, but only if you have X amount of RAM, or it was
+  purchased on a Blue Moon.
+* Manual installation - It requires a GUI to install, can't be
+  automated (even with something like a response file), and sometimes
+  you have to do parallel steps and hope that they don't have race
+  conditions or start over when they do.
+* Inflexible - "You can do other things with it, but that would be a
+  custom setup and unsupported."
+* Long patch cycles - This would be fine if we all didn't already know
+  that half of what's out there is commodity open source software. It
+  doesn't matter you've wrapped it all up under an appliance bow -
+  it's still vulnerable to whatever it is that the patch is for.
+* Lots of fingerpointing when it doesn't interact correctly in my
+  owner situation or with other Enterprise software.
+
+So, what is Enterprise software? It can't be software that we're
+paying for the quality of. What it really comes down to - it's
+software that we can outsource the blame to... if we're lucky.
+
+This doesn't mean that there isn't good Enterprise software out
+there. Just means that what is good out there probably isn't being
+bought for the reasons that it's being marketed for.
