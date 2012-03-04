@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Motivational | CorgaLabs Blog]]></title>
+  <link href="http://cmceniry.github.com/blog/categories/motivational/atom.xml" rel="self"/>
+  <link href="http://cmceniry.github.com/"/>
+  <updated>2012-03-03T22:09:10-08:00</updated>
+  <id>http://cmceniry.github.com/</id>
+  <author>
+    <name><![CDATA[Chris McEniry]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Bret Victor: Inventing on Principle]]></title>
+    <link href="http://cmceniry.github.com/blog/2012/02/20/bret-victor-inventing-on-principle/"/>
+    <updated>2012-02-20T11:38:00-08:00</updated>
+    <id>http://cmceniry.github.com/blog/2012/02/20/bret-victor-inventing-on-principle</id>
+    <content type="html"><![CDATA[<p>Watched a video there other day. It's making it's rounds on the
+internet. It's definitely worth watching:</p>
+
+<ul>
+<li><a href="http://vimeo.com/36579366">Inventing on Principle</a></li>
+</ul>
+
+
+<p>The key with it is to be mindful of what you're doing when you start
+to write something. Do something that matters - both from the
+perspective of contributing to society, but also how it contributes to
+society. Don't just do something dumb that's noble - make it awesome
+and noble. At least, that's what I got from it.</p>
+
+<p>Makes me think of this blog post as well:</p>
+
+<ul>
+<li><a href="http://sethgodin.typepad.com/seths_blog/2012/01/who-cares.html">Who Cares?</a></li>
+</ul>
+
+
+<p>Those who care to put the finishing touches on something are the ones
+who will do good things. Not necessarily the ones who will succeed or
+excel (or appear to have excelled), but the ones who will have good
+things to show.</p>
+
+<p>Just food for thought.</p>
+]]></content>
+  </entry>
+  
+</feed>
