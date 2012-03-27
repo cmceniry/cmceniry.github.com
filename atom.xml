@@ -4,7 +4,7 @@
   <title><![CDATA[CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2012-03-26T22:18:55-07:00</updated>
+  <updated>2012-03-26T22:19:45-07:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<p>I&#8217;m starting a new project aimed at handling firewall policies in a
 sane way. Well, it&#8217;s not so much the firewall policies themselves, as
 it about how we think about the firewall policies, or more precisely,
-about how we thinkg about the application policies themselves.</p>
+about how we think about the application policies themselves.</p>
 
 <p>All firewall configurations that I&#8217;ve been part of have come about in
 a specific pattern:</p>
