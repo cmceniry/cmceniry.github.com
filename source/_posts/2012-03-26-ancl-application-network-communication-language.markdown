@@ -10,7 +10,7 @@ categories:
 I'm starting a new project aimed at handling firewall policies in a
 sane way. Well, it's not so much the firewall policies themselves, as
 it about how we think about the firewall policies, or more precisely,
-about how we thinkg about the application policies themselves.
+about how we think about the application policies themselves.
 
 All firewall configurations that I've been part of have come about in
 a specific pattern:
