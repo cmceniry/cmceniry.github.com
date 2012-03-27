@@ -4,7 +4,7 @@
   <title><![CDATA[CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2012-03-04T14:54:51-08:00</updated>
+  <updated>2012-03-26T22:15:43-07:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -12,6 +12,173 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ANCL: Application Network Communication Language]]></title>
+    <link href="http://cmceniry.github.com/blog/2012/03/26/ancl-application-network-communication-language/"/>
+    <updated>2012-03-26T20:16:00-07:00</updated>
+    <id>http://cmceniry.github.com/blog/2012/03/26/ancl-application-network-communication-language</id>
+    <content type="html"><![CDATA[<p>I&#8217;m starting a new project aimed at handling Firewall policies in a
+sane way.</p>
+
+<p>All firewall configurations that I&#8217;ve been part of have come about in
+a specific pattern:</p>
+
+<ol>
+<li>Someone writes an application, and puts together some documentation
+that, if we&#8217;re lucky, includes a visio of how the application
+talks. Most of the time, it&#8217;s something closer to a &#8220;open these ports
+on your firewall to make this happen.&#8221;</li>
+<li>A sysadmin/app engineer/gwmth(guy who makes things happen - some
+future post) looks over the documentation and identifies specific
+hosts (IPs really) based on where the app components are running. He
+puts together a ticket asking for specific ports to be open for
+specific IPs or ranges. If you&#8217;re lucky (I&#8217;ll admit, I&#8217;ve been that
+lazy admin), the admin puts together a visio of how it is all laid
+out.</li>
+<li>A netadmin takes the rules from the sys/app admin, tries to match
+them up to existing rules or network ranges and adds them to the
+firewall. If it&#8217;s not a stateful device, it&#8217;s worse than that as
+you&#8217;re limited by the language.</li>
+</ol>
+
+
+<p>So, we&#8217;ve got a little game of operator going on here. On top of that,
+usually the only permanent records of the change show up in two
+places: any ticketing system, and the firewall itself. This means that
+to try to figure out what happened, you have to go sort through
+tickets or reverse engineer it from the firewall itself.</p>
+
+<p>If you&#8217;ve ever had to deal with this, you end up having to reverse
+engineer it all the time.</p>
+
+<p><strong>This doesn&#8217;t work.</strong></p>
+
+<p>There&#8217;s now <a href="http://www.redsealnetworks.com/">tools</a> that will help
+you with this, be more efficient at it. They look at all of the rules
+and you can go back and check to see what&#8217;s approved for what. But the
+modelling is still done on a &#8220;this IP has access via this port to this
+other IP, and this collection of IPs/ports are this model.&#8221; But it&#8217;s
+still approaching it the wrong way - and if you&#8217;re more efficient at
+doing the wrong thing, you&#8217;re just doing it wronger.</p>
+
+<p>These tools do other things, but from an application perspective,
+they&#8217;re very late in the game. So, late that it feels like we&#8217;re doing
+network management backwards. I think we gotta go back to the
+beginning. Instead of focusing on the network and building rules from
+there, I want to start with the application and derive the rules from
+there.</p>
+
+<p>And yes, before we go there, documentation is good. I&#8217;m not trying to
+give people a pass on the documentation. I&#8217;m trying to find a way that
+makes it easier to document. So, keep that in mind.</p>
+
+<p>Imagine that when you write an application, you can also easily
+identify what network communication is needed relative to the
+components for you application. For example, look at a simple LAMP
+application. It fundamentally, has 3 components:</p>
+
+<ol>
+<li>the Database,</li>
+<li>the Web Server, and</li>
+<li>the web site consumers.</li>
+</ol>
+
+
+<p>And we can readily identify what access is needed:</p>
+
+<ol>
+<li>The <strong>Web Server</strong> needs access to the <strong>Database</strong> on port
+<strong>3306</strong>.</li>
+<li><strong>Web site consumer</strong>s need access to the <strong>Web Server</strong> on port
+<strong>80</strong>.</li>
+</ol>
+
+
+<p>It&#8217;s fundamentally &#8220;X needs access to Y on port P&#8221; or if you want to
+move it around &#8220;X is allowed on port P to Y&#8221; or &#8220;X is allowed P to Y.&#8221;
+If you&#8217;ve done any access control before, you&#8217;ll notice the same
+pattern of Actor(X), Resource(Y), and Permission(P).</p>
+
+<p>I think there&#8217;s something about this that can be done
+<a href="http://en.wikipedia.org/wiki/Security_Assertion_Markup_Language">SAML</a>,
+but its focus is on the individual&#8217;s identity and access
+control. Maybe there&#8217;s something I&#8217;m missing, but if I am, <a href="https://www.google.com/search?q=don't+understand+saml">I don&#8217;t
+think I&#8217;m in the minority</a>.</p>
+
+<p>So, we have a general form for recording the policy. There&#8217;s also the
+other key take away from this one in that we&#8217;re not dealing with
+IPs. Nowhere above is an IP listed. We&#8217;re talking about components
+(Actors and Resources). This could take the form of:</p>
+
+<pre><code>{'MyWebSiteModel':
+  [
+    'WebServer': 'DB:3306/tcp',
+    'WebSiteUser': 'WebServer:80/tcp'
+  ]
+}
+</code></pre>
+
+<p>This is just the general description. It&#8217;s still not very useful. To
+do that we have to instantiate it - basically, assign hosts/IPs to
+each of the components:</p>
+
+<pre><code>{'MyWebSiteInstance':
+  'Model': 'MyWebSiteModel',
+  'Components': {
+    'DB': ['2.2.2.2'],
+    'WebServer': ['1.1.1.1', 'web2.mydomain.com'],
+    'WebSiteUser': ['0.0.0.0']
+  }
+}
+</code></pre>
+
+<p>Based on all of that information, you can form the rules that would be
+needed to fit any firewall.</p>
+
+<p>How does this address my initial problem? It comes down to fitting the
+abstraction model to the handoff points:</p>
+
+<ol>
+<li>Application Developer: Generates the components and communication
+patterns.</li>
+<li>Application Administrator: Instantiates and assigns specific IPs or
+hosts to each of the components.</li>
+<li>Network Administrator: Gets a concise description to work from. If
+the right amounnt of automation is applied, I might be marginalizing
+the network admin for this task (that&#8217;s not completely true - there&#8217;s
+plenty of sites that have enough device complexity that no simple
+model will be immediately applicable - but it could still be used as a
+starting point)..</li>
+</ol>
+
+
+<p>The model I used above is overtly simple. I already have questions
+around RPCs, dynamic ranges, encapsulated protocols (* over http,
+anyone?). I&#8217;m only starting the discussion here and dealing with the
+minimal accomplishable step. It&#8217;s something to build on.</p>
+
+<p>Now for the practical hand waving. The follow up pieces to this are
+the tools to make it useful. We still need:</p>
+
+<ul>
+<li>A tool for recording this. This could be done via the above forms,
+but it&#8217;d be nice to have it wrapped up in a bow. This is doubly
+desired when we have to consider how all of the policies are
+instantiated with the specific host information.</li>
+<li>A tool for visualizing. It&#8217;d take in the general descriptions, and
+show a pretty display for it.</li>
+<li>A tool for converting the models to rules. It would take in the
+general descriptions, the specific host information for each
+instantiation, and then outputs some for iptables, pf, acls,
+firewall policies, etc. Yeah, some magic here.</li>
+</ul>
+
+
+<p>So, first things being first, my <a href="http://github.com/cmceniry/ancl">next project</a>
+is something for tracking.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Carbonite CEO on Rush Limbaugh]]></title>
