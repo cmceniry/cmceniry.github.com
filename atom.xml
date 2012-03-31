@@ -4,7 +4,7 @@
   <title><![CDATA[CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2012-03-26T22:19:45-07:00</updated>
+  <updated>2012-03-31T06:30:07-07:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -12,6 +12,404 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SOO: Pids over People]]></title>
+    <link href="http://cmceniry.github.com/blog/2012/03/31/soo-pids-over-people/"/>
+    <updated>2012-03-31T06:24:00-07:00</updated>
+    <id>http://cmceniry.github.com/blog/2012/03/31/soo-pids-over-people</id>
+    <content type="html"><![CDATA[<p>tl;dr</p>
+
+<p>I come here not to <em>bury</em> NoOps, but to <em>praise</em> it.</p>
+
+<ol>
+<li>There are two extremes when it comes to service management: small
+tight team doing Dev and Ops roles, and separate teams for Dev and
+Ops. Both of these will exist at various times for various scope.
+In the middle is confusion.</li>
+<li>As Ops teams, we can enable Dev teams by providing them ways to
+enable themselves. Let&#8217;s figure out how to provide XaaS
+more. Infrastructure, Config/Deploy, Monitoring, etc. XaaS doesn&#8217;t
+have to mean an API but it does mean a very predictable response.</li>
+<li>As engineering(Dev+Ops) groups, we all like the idea of putting
+together a project using a small/dedicated team with no
+externalities. XaaS helps this to the degree that some items are
+decoupled, but there&#8217;s a level of knowledge that XaaS can&#8217;t convey,
+so let&#8217;s figure out how to make that happen.</li>
+<li>No size fits all, so you have to constantly evaluate and bounce
+back and forth on a service by service basis, and figure out how to
+fill in gaps while you&#8217;re transitioning from one to the other.</li>
+</ol>
+
+
+<h3>Disclaimer</h3>
+
+<p>Bias alert: I&#8217;m an Op, and there is a bit of frustration here (it
+comes out as sarcasm). I like to think I&#8217;m opened minded but I am
+being a bit irrational here.  so tread forward with that in mind. My
+goal is to improve not justify myself.</p>
+
+<p>And to be fair, this doesn&#8217;t just apply to Dev and Ops. It can also
+apply to Sec, QA, Data Analysis, etc. It&#8217;s just a matter of how
+coupled some of these are. DevOps is just on my radar, so that&#8217;s my
+focus.</p>
+
+<p>This is my first attempt at a longer form (almost 3x my previous
+longest post). I&#8217;m attempting to make it not sound like a load of
+stream of consciousness dribble, so&#8230; be gentle.</p>
+
+<h3>References</h3>
+
+<p>There&#8217;s been a lot of talk about DevOps and NoOps over the past
+week. I can&#8217;t say how it started, so I&#8217;ll pick it up with
+<a href="http://perfcap.blogspot.com/2012/03/ops-devops-and-noops-at-netflix.html">Cockcroft</a>.
+It&#8217;s a nice piece on how Netflix does their internal product
+development (lots of automation and relying on services instead of
+groups - <em>remember this part</em>). There&#8217;s some commentary over the
+terms. I probably have the same reaction to it as
+<a href="https://gist.github.com/2140086">Allspaw</a> does, but similar
+<a href="http://blog.ingineering.it/post/19383804543/devops-vs-noops-misses-the-point">to</a>
+<a href="http://www.edwardcapriolo.com/roller/edwardcapriolo/entry/noops_devops_yesdilusional_no_it">others</a>,
+I don&#8217;t think operational aspects are going to go away. And Cockcroft
+even follows up with &#8220;I think we agree to call it PaaS,&#8221; so it&#8217;s not
+so much about the terms.</p>
+
+<p>To spell it out, there&#8217;s 2 threads here:</p>
+
+<ol>
+<li>There is a move to use services (i.e. APIs, XaaS)</li>
+<li>You can&#8217;t get rid of operational concerns, but you may have to
+focus the resources differently.</li>
+</ol>
+
+
+<p>I don&#8217;t think people will argue with the later, so I want to know what
+the former means. I&#8217;m starting with how I saw it come about.</p>
+
+<h3>The DevOps/Dev Ops Cycle</h3>
+
+<p>I think a lot of organizations follow a similar pattern:</p>
+
+<p>Small team develops a platform and people wear the dev and ops
+hats. Platform grows and gets too big for a small team to manage. The
+team is spending too much time fire fighting and in operational
+aspects, so they specialize. Eventually, you end up with a Dev side
+and Ops side which are (or have grown to be) completely different
+people. The smart (and humble) ones feel like it&#8217;s too disjointed and
+don&#8217;t feel like they can move the organization (too big, too much
+inertia), so they splinter off on a skunksworks project with a small
+team. The smart but not humble ones just see the other side as a bunch
+of oafs, so they splinter off on a skunksworks project with a small
+team.</p>
+
+<p>Repeat ad nasuem.</p>
+
+<p>The pendulum swings back and forth. Is this the way it has to be?</p>
+
+<p>Going back to Allspaw:</p>
+
+<pre><code>Etsy has an Operations org, people with "Operations" in their
+title, and yet don't have a culture of red tape like you
+describe. The premise you're implying doesn't exist here (that Ops
+are grumpy people that say no all the time and are a source of
+frustration and holdups) and I'm willing to bet it's the same in
+other companies.
+</code></pre>
+
+<p>I&#8217;m probably not as optimistic as I think Allspaw is about the number
+of companies, but there certainly are some. He continues:</p>
+
+<pre><code>My definition of Ops involves the responsibility to make it safe
+to make whatever change to production is necessary, at the rate
+that it is necessary for the business to evolve.
+</code></pre>
+
+<p>There&#8217;s a bit of paternalism here, but I will conceed that for
+recognizing that we&#8217;re enabling for a goal here. That goal is one that
+allows anyone who needs to to make changes (i.e. contribute) to
+production while at the same time taking out precautions against
+issues that may crop up due to those changes.</p>
+
+<p>Alas, I think some devs just don&#8217;t see this and instead have to deal
+with Ops groups that can&#8217;t respond to their needs. It&#8217;s not
+necessarily a problem with the Ops team, but that the Dev sees the Ops
+as a roadblock. Yea, sometimes the Ops teams is just lacking. Other
+times, it&#8217;s overwhelmed as it has to respond to everyone else and
+can&#8217;t focus on its needs looking forward. And I have to mention those
+Devs that just don&#8217;t give a damn and are going to do it their way come
+hell or high water.</p>
+
+<p>So, they turn the cycle around again and toss the baby (operational
+experience) with the bath water (unresponsive ops team). They go
+looking for ops sides (XaaS) that can respond - even if it is in a
+limited way, and not a way that is tailored to them. They adapt their
+processes to work within the framework that at least gives them some
+predictability and how they want it.</p>
+
+<h3>#NoPeople</h3>
+
+<p>(Apologies to Cockcroft here. I&#8217;ve respected him since his
+VirtualAdrian days but this may not being completely fair to him.)</p>
+
+<p>Cockcroft&#8217;s article is littered with this pattern:</p>
+
+<pre><code>Individual Cassandra clusters are automatically created by Priam,
+and it's trivial for a developer to create their own cluster of
+any size without assistance (NoOps again).
+</code></pre>
+
+<p>&#8220;Without assistance&#8221; - no people.</p>
+
+<pre><code>...we have hundreds of developers using NoOps to get their code
+and datastores deployed in our PaaS and to get notified directly
+when something goes wrong.
+</code></pre>
+
+<p>&#8220;Developers&#8230; get notified directly&#8221; - no people.</p>
+
+<pre><code>...no need for the developers to interact with ops people to get
+things done.
+</code></pre>
+
+<p>&#8220;No need&#8230; to interact&#8221; - no people.</p>
+
+<p>I&#8217;m not sure if #NoOps is the right hash or #NoPeople is. Yes, the dev
+is involved but not in all cases:</p>
+
+<pre><code>We have built tooling that removes many of the operations tasks
+completely from the developer.
+</code></pre>
+
+<p>I have to read from that that the real goal is to completely remove
+people from the picture. That&#8217;s not necessarily a bad thing. Good
+automation has always been a goal of any real (Ops?) organization
+worth its salt, even with the ever present
+worry-about-automating-yourself-out-of-a-job thought process. But this
+isn&#8217;t strictly about automation. It&#8217;s about removing roadblocks or
+unpredictables out of the equation. It&#8217;s about taking <em>other</em> people
+out of the picture. Let&#8217;s call-a-spade-a-spade.</p>
+
+<p>&lt;pithydiversion&gt; Let me flip it around. Here&#8217;s my next user
+story: As an Op, I would like an automation button for a feature
+change instead of having to explain it to a developer, and then get it
+into their backlog, get it prioritized, get it implemented, tested,
+and then eventually released to me to be rolled out (with
+documentation?). I would be claiming ownership over #NoDev, but I
+think @DEVOPS_BORAT has beaten me to <a href="https://twitter.com/#!/DEVOPS_BORAT/status/108335303382663169">that</a>.
+&lt;/pithydiversion&gt;</p>
+
+<h3>SOO or OaaS or PoP</h3>
+
+<p>So, we keep replacing people with some service or API, and lead to the
+logical conclusion is that people no longer interact with each other;
+instead, we interact with whatever service or API that someone else
+has offered. I&#8217;m not sure if this is:</p>
+
+<ul>
+<li>Service Oriented Organization</li>
+<li>Organization as a Service</li>
+<li>Processes(pids) over People</li>
+</ul>
+
+
+<p>To be fair, I have to say that I do appreciate this approach from an
+actual service offering. I have to give a nod to
+<a href="https://plus.google.com/112678702228711889851/posts/eVeouesvaVX">Yegge</a>
+here. It shouldn&#8217;t surprise us that we&#8217;re doing the same thing with
+the organization as we are with our service components.</p>
+
+<p>The ultimate form of the Dev/Ops divide is using a separate service
+just as you would use an API. Of course, that&#8217;s only a divide around
+one factor (infrastructure versus platform, platform vs app, etc). As
+has been said before &#8220;AWS becomes your Ops team.&#8221;</p>
+
+<p>This is efficient, right? Maybe, but that&#8217;s not what&#8217;s getting to
+me. Why does it bother me? There&#8217;s two reasons.</p>
+
+<h3>The Agile Manifesto Doublestandard</h3>
+
+<p>As an Op, I feel like there&#8217;s a double standard here. For 10 years,
+we&#8217;ve been hearing how Agile was supposed to fix the problems between
+Product Management and the Development sides of the organization. The
+key has been interaction and adaptability because predictability has
+always been lacking.</p>
+
+<pre><code>People over Process.
+</code></pre>
+
+<p>The downside has been that since you&#8217;re going for these short
+interations, any externality can totally derail your sprint.</p>
+
+<p>So, when interacting with an under-responsive Ops organization, the
+Devs just see them as a roadblock, not as something to work with. (I&#8217;m
+projecting:)</p>
+
+<pre><code>Screw people over process. We want process over people if process
+is more predictable.
+</code></pre>
+
+<h3>Masters of our own Destiny</h3>
+
+<p>I used to think that it really came down to control. Everyone wants to
+be in control. Ops want to be in control of production. Dev was to be
+in control of the service. That&#8217;s not the real case (well, it is in
+some highly disfunctional people).</p>
+
+<p>&lt;rant&gt;I believe that I want to work in an organization that is full of
+people respecting each other. Maybe I&#8217;m being naive - it&#8217;s a
+dog-eat-dog business world.</p>
+
+<p>Well, if that&#8217;s the case, <a href="http://www.youtube.com/watch?v=35TbGjt-weA">fuck that</a>.</p>
+
+<p>Since I&#8217;m not going to conceed that quickly, I&#8217;m going to stick with
+my naivety and plow forward.&lt;/rant&gt;</p>
+
+<p>I think it&#8217;s more about being MoooDy - Masters of our own Destiny. I
+think we&#8217;re climbing Mazlow&#8217;s pyramid to self-actualization, even if
+we don&#8217;t realize or acknowledge it.</p>
+
+<p>The key from that is being able to work together better, and part of
+that is for the Ops side to deliver in a predictable manner (be it
+manually, or automatically) to help Devs reach the top of that
+pyramid.</p>
+
+<h3>People are not pids</h3>
+
+<p>The second reason is as simple the fact that people are not pids. A
+service is ideally (warning: SOA and Unix mentality here) meant to do
+one thing and do it well. A person on the other hand usually
+doesn&#8217;t. In fact, if there&#8217;s a person who does, it&#8217;s not that way
+for long. He quickly becomes obsolete and the rest of us move on.</p>
+
+<p>Author Unknown (though I heard it from Harvey Mackay):</p>
+
+<pre><code>Amateurs practice till they get it right. Professionals practice
+until they can't get it wrong.
+</code></pre>
+
+<p>You can&#8217;t ditch people with Ops experience without taking the
+hit. You can recover from that, but it&#8217;s still a hit. You want to
+preserve the focus and practice.</p>
+
+<p>There&#8217;s only so much that services at this time can do. They have to
+completely evolve. And while they&#8217;re evolving, you want good people to
+be able to fill in the gaps.</p>
+
+<h3>The in-house trap</h3>
+
+<p>I think there&#8217;s a case that demonstrates the above for the
+process.</p>
+
+<p>Consider that an in-house infrastructure team does its job well. It&#8217;s
+listened to development, and provides a beautiful IaaS interface and a
+beautiful Deployment-aaS interface. If the process doesn&#8217;t change (for
+even something as insignificant as if the developer <em>doesn&#8217;t like
+it</em>), it&#8217;s started to be seen as unresponsive just as Ops teams in the
+past have been seen. Development&#8217;s immediately found a reason for
+going with some other service (i.e. some other &#8220;Ops&#8221; team). Another
+skunkworks project is started and we spin the cycle once again.</p>
+
+<p>This turns into a catch-22 if the service couldn&#8217;t change because it
+was servering Development on the whole but there&#8217;s even one dev
+breaking from the herd. Given that organizational issues run deeper
+than any Dev/Ops devide, what are the chances of that?</p>
+
+<h3>Coupling trap</h3>
+
+<p>SOA/XaaS works well when there&#8217;s a loosely decoupled aspect to
+everything. Once that goes out the window, the level of complexity
+goes off the rails.</p>
+
+<p>Likewise, XaaS works well when it&#8217;s loosely decoupled.</p>
+
+<p>For example, consider an PaaS/IaaS. A running application is heavily
+dependent upon the system it runs on. Libraries have to be installed,
+and they need to match version (and get updated hand-in-hand). Kernel
+APIs have to match up, or at least behave similarily. It&#8217;s hard to
+decouple apps from the underlying system. So, creating a PaaS there
+(or IaaS if you want to see it that way) can run into some edge cases
+that make it very tricky (repeat the in-house trap).</p>
+
+<h3>#DevOps</h3>
+
+<p>So, there are cases when XaaS doesn&#8217;t cut it. What do you do? Mix the
+roles in with who&#8217;s doing them, which leads me to DevOps.</p>
+
+<p>There&#8217;s a bunch of commentary on it, so I won&#8217;t rehash that. Suffice
+to say that people have to handle both dev and ops
+responsibilities. This can be either in the Dev part of the
+organization (e.g. responsible for running a customer facing service),
+or it can be in the Ops part of the organization (e.g. responsible for
+running an internal customer facing service).</p>
+
+<p>Well, this can have it&#8217;s own problems. Consider compliance. There are
+compliance standards that require a separation of Ops from Dev. I have
+no idea how to approach this one, but any devops move or adding
+self-service seems to fly against this. But it remains a piece that
+has to be accounted for. If someone can explain to me how any of this
+can be PCI approved without the separation of duties, I&#8217;d be eternally
+grateful&#8230;</p>
+
+<p>You also have to consider the scaling cases. Services grow, teams
+grows, and as we approach communication issues, we have to fragment
+them. Sometimes you fragment the service; sometimes you fragment the
+teams.</p>
+
+<h3>Service Catalog and Service Lifecycle Management</h3>
+
+<p>So, when you&#8217;re back to Dev and Ops and don&#8217;t have an XaaS setup yet?</p>
+
+<p>ITIL (&lt;groan&gt; - hear me out) has an idea of a <a href="http://www.knowledgetransfer.net/dictionary/ITIL/en/Service_Catalog.htm">Service Catalog</a>.</p>
+
+<p>It&#8217;s basically a menu of what the IT organization provides you. It&#8217;s
+not specific about whether this be provided by people or by an
+automated process or by self-service. The key is to define it in
+business terms and include costs and SLAs.</p>
+
+<p>In addition, there&#8217;s the Service Lifecycle Management. It basically
+handles how new service offerings roll in, or more useful to this
+discussion, how service offerings evolve. This provides the
+adaptation that is required. As the service matures, it natually moves
+out from being a human led service and into a XaaS led service.</p>
+
+<p>There&#8217;s something to be said for Lean and just in time service
+delivery, but I&#8217;m just not articulate enough to incorporate that in
+yet.</p>
+
+<p>The key here is that it doesn&#8217;t have to be an API. Though, I do have
+to conceed, an API usually has a very well defined (though maybe not
+documented) service catalog. Can&#8217;t really beat that.</p>
+
+<p>And yes, I&#8217;m bringing ITIL in here. Whether you agree with the full
+stack or not, there are some useful parts of it.</p>
+
+<h3>The spectrum</h3>
+
+<p>On one side you have small tight teams. On the other side, you have
+separate and efficient Devs and Ops teams (with a XaaS being a valid
+form there). In the middle is&#8230; muck. It&#8217;s where you don&#8217;t want to
+be. You want to go one way or the other. Both sides can exist at the
+same time, but they need to be distinctively on the sides, not
+averaging in the middle. How do you get there?</p>
+
+<p>To get to DevOps, you move your teams so that you&#8217;re embedding
+functionality around various services. This means pulling people out
+of their traditional comfort zones and putting them into something
+that rounds them out.</p>
+
+<p>To get to Dev and Ops, you have to put together a good service
+catalog. You can either spell it out with people, or by figuring out
+how to create some sort of XaaS offering. Ironically (or not?), that
+XaaS offering&#8217;s team will probably start off looking like a DevOps
+team (hence why both sides of the spectrum can exist at once).</p>
+
+<p>In all of these cases, we&#8217;re talking about real people and these
+decisions have consequences. We have to remember that and go back to
+the Agile motto of &#8220;People over Process.&#8221; So, above all you have to
+have honest communication as what&#8217;s needed, what&#8217;s missing, and what&#8217;s
+open to be experimented with.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ANCL: Application Network Communication Language]]></title>
