@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: software | CorgaLabs Blog]]></title>
+  <link href="http://cmceniry.github.com/blog/categories/software/atom.xml" rel="self"/>
+  <link href="http://cmceniry.github.com/"/>
+  <updated>2012-04-28T11:01:22-07:00</updated>
+  <id>http://cmceniry.github.com/</id>
+  <author>
+    <name><![CDATA[Chris McEniry]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Abuser Stories]]></title>
+    <link href="http://cmceniry.github.com/blog/2012/04/28/abuser-stories/"/>
+    <updated>2012-04-28T10:25:00-07:00</updated>
+    <id>http://cmceniry.github.com/blog/2012/04/28/abuser-stories</id>
+    <content type="html"><![CDATA[<p>Was just listening to <a href="http://www.pauldotcom.com/">PaulDotCom's security podcast</a>
+(<a href="http://traffic.libsyn.com/pauldotcom/PaulDotCom-283-Part2.mp3">283</a>)
+[NSFW], and they made a comment about "Abuse Cases." I haven't dug
+into it yet, but I really like the sound of that. Part of it is a bit
+tongue in cheek, but there's more there. I'm constantly subjected to
+the Use Case and the User Story, and most of the time, those are
+feature focused:</p>
+
+<pre><code>As a user, I want to be able to store my data...
+</code></pre>
+
+<p>Now, that's not always the case, as we've been able to get some others
+in there:</p>
+
+<pre><code>As a day-to-day operator, I need to be able to perform
+maintenance on a node.
+</code></pre>
+
+<p>and</p>
+
+<pre><code>As a day-to-day operator, I need to be able to collect metric X to
+see the health of the system.
+</code></pre>
+
+<p>So, there's definitely credence to the idea of "Users stories are for
+everyone," or "All of use are users," so why would we need to use a
+different term. Couldn't we just say that it's all already covered?</p>
+
+<p>Well, there's two things that I think are ignored there.</p>
+
+<p>First, I'm currently been working a great deal on compliance, so I'm
+thinking of it as Role Separation. A User is a very specific role that
+is very different from an Operator, or an Attacker, or even subclasses
+of those (Store Operator versus System Operator versus Application
+Operator).</p>
+
+<p>Second, <a href="http://en.wikipedia.org/wiki/Linguistic_relativity">language affects the way we think</a>.
+This is not new, this is not some crazy idea. We have so much baggage
+with each term that already exists.</p>
+
+<p>To me, a User Story is feature focused. It explores the Positive
+Space. We could include the operational examples as part of
+this. These are things we <em>want it to do</em>.</p>
+
+<p>On the flip side, an Abuser Story is anti-feature focused. It explores
+the Negative Space. It's for things we <em>don't want it to do</em>.</p>
+
+<p>Judy Neher has a presentation at Agile 2012 for <a href="http://submit2012.agilealliance.org/node/13318">Abuser Stories: Thinking Like the Bad Guy to Reduce Security Vulnerabilities</a>.
+I look forward to seeing what comes out of that.</p>
+
+<p>Yes, I see the slippery slope that I'm on. We could get so prolific
+that every type of story actor gets their own top level
+classification. The User Stories approach does make you think through
+the different roles that will use it, so all of the different top
+level labels may be superfluous. There is validity to that
+concern.</p>
+
+<p>But with the baggage, I think that adding something with emphasis may
+be necessary for a time. Until it's widely accepted about bringing in
+the negative space, I'm going to keep using the term Abuser Stories
+(assuming I'm not treading to much on victims of violence...).</p>
+]]></content>
+  </entry>
+  
+</feed>

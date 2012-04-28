@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Abuser Stories - CorgaLabs Blog</title>
+  <meta name="author" content="Chris McEniry">
+
+  
+  <meta name="description" content="Was just listening to PaulDotCom&#8217;s security podcast
+(283)
+[NSFW], and they made a comment about &#8220;Abuse Cases.&#8221; I haven&#8217;t dug &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cmceniry.github.com/blog/2012/04/28/abuser-stories">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="CorgaLabs Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">CorgaLabs Blog</a></h1>
+  
+    <h2>Confessions of a SysAdmin-o-Path</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cmceniry.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Abuser Stories</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-28T10:25:00-07:00" pubdate data-updated="true">Apr 28<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Was just listening to <a href="http://www.pauldotcom.com/">PaulDotCom&#8217;s security podcast</a>
+(<a href="http://traffic.libsyn.com/pauldotcom/PaulDotCom-283-Part2.mp3">283</a>)
+[NSFW], and they made a comment about &#8220;Abuse Cases.&#8221; I haven&#8217;t dug
+into it yet, but I really like the sound of that. Part of it is a bit
+tongue in cheek, but there&#8217;s more there. I&#8217;m constantly subjected to
+the Use Case and the User Story, and most of the time, those are
+feature focused:</p>
+
+<pre><code>As a user, I want to be able to store my data...
+</code></pre>
+
+<p>Now, that&#8217;s not always the case, as we&#8217;ve been able to get some others
+in there:</p>
+
+<pre><code>As a day-to-day operator, I need to be able to perform
+maintenance on a node.
+</code></pre>
+
+<p>and</p>
+
+<pre><code>As a day-to-day operator, I need to be able to collect metric X to
+see the health of the system.
+</code></pre>
+
+<p>So, there&#8217;s definitely credence to the idea of &#8220;Users stories are for
+everyone,&#8221; or &#8220;All of use are users,&#8221; so why would we need to use a
+different term. Couldn&#8217;t we just say that it&#8217;s all already covered?</p>
+
+<p>Well, there&#8217;s two things that I think are ignored there.</p>
+
+<p>First, I&#8217;m currently been working a great deal on compliance, so I&#8217;m
+thinking of it as Role Separation. A User is a very specific role that
+is very different from an Operator, or an Attacker, or even subclasses
+of those (Store Operator versus System Operator versus Application
+Operator).</p>
+
+<p>Second, <a href="http://en.wikipedia.org/wiki/Linguistic_relativity">language affects the way we think</a>.
+This is not new, this is not some crazy idea. We have so much baggage
+with each term that already exists.</p>
+
+<p>To me, a User Story is feature focused. It explores the Positive
+Space. We could include the operational examples as part of
+this. These are things we <em>want it to do</em>.</p>
+
+<p>On the flip side, an Abuser Story is anti-feature focused. It explores
+the Negative Space. It&#8217;s for things we <em>don&#8217;t want it to do</em>.</p>
+
+<p>Judy Neher has a presentation at Agile 2012 for <a href="http://submit2012.agilealliance.org/node/13318">Abuser Stories: Thinking Like the Bad Guy to Reduce Security Vulnerabilities</a>.
+I look forward to seeing what comes out of that.</p>
+
+<p>Yes, I see the slippery slope that I&#8217;m on. We could get so prolific
+that every type of story actor gets their own top level
+classification. The User Stories approach does make you think through
+the different roles that will use it, so all of the different top
+level labels may be superfluous. There is validity to that
+concern.</p>
+
+<p>But with the baggage, I think that adding something with emphasis may
+be necessary for a time. Until it&#8217;s widely accepted about bringing in
+the negative space, I&#8217;m going to keep using the term Abuser Stories
+(assuming I&#8217;m not treading to much on victims of violence&#8230;).</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chris McEniry</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-28T10:25:00-07:00" pubdate data-updated="true">Apr 28<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/software/'>software</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cmceniry.github.com/blog/2012/04/28/abuser-stories/" data-via="" data-counturl="http://cmceniry.github.com/blog/2012/04/28/abuser-stories/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/03/31/soo-pids-over-people/" title="Previous Post: SOO: Pids over People">&laquo; SOO: Pids over People</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/04/28/abuser-stories/">Abuser Stories</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/31/soo-pids-over-people/">SOO: Pids over People</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/26/ancl-application-network-communication-language/">ANCL: Application Network Communication Language</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/04/carbonite-ceo-on-rush-limbaugh/">Carbonite CEO on Rush Limbaugh</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/04/enterprise-coda/">Enterprise: Coda</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chris McEniry -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
