@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: sysadmin | CorgaLabs Blog]]></title>
-  <link href="http://cmceniry.github.com/blog/categories/sysadmin/atom.xml" rel="self"/>
+  <title><![CDATA[Category: monitoring | CorgaLabs Blog]]></title>
+  <link href="http://cmceniry.github.com/blog/categories/monitoring/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
   <updated>2012-08-15T13:58:20-07:00</updated>
   <id>http://cmceniry.github.com/</id>
