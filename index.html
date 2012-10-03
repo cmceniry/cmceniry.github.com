@@ -9,7 +9,7 @@
   <meta name="author" content="Chris McEniry">
 
   
-  <meta name="description" content="(Release early, release often - a lot of the ideas here have some rough edges&#8230;) There&#8217;s been a lot of run around at work recently about &hellip;">
+  <meta name="description" content="In the last post, I talked about 4 different monitoring disciplines. In this, I&#8217;m talking about the first one: Meters; and try to distinguish &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,74 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/02/monitoring-discipline-1-meter/">Monitoring Discipline 1: Meter</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-02T23:52:00-07:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In the last post, I talked about 4 different monitoring disciplines. In this, I&#8217;m talking about the first one: Meters; and try to distinguish some common Meter patterns.</p>
+
+<p>I pick Meter for the first one for two reasons:</p>
+
+<ul>
+<li>It is the first one in the pipeline. It tends to be the closest to the feature being monitored.</li>
+<li>It tends to be the mechanism that I (and I believe many others) think about first.</li>
+</ul>
+
+
+<p>The Meter is the basis of measurement. Whether it&#8217;s counting the number of bytes going through a network interface, a recording of events generated from snmp traps, a log watcher, or a stream of metrics coming out of an application, the Meter is any item that can be measured or status checked and the path for sending the measurements to consumers who are interested in them. These are two fundamental and distinct sides. In earlier days, they were typically intermingled in one feature or tool, but now technologies allow for different distinctions between those.</p>
+
+<p>There are two main categories of data types for the Meters: numeric, and event based. The primary difference for these is distinguishing between looking at a specific value (or an aggregate or nonvalue items), and looking at a specific event. Numeric values have a continuous meaning - the read at time t will have a different but just as significant meaning than the reading at time t+1. Events on the other hand are not discernable in time - if I receive an event at time t, I may not know the state of the system at t+1 (sometimes I can do another poll, sometimes I can&#8217;t).</p>
+
+<p>The Meter can use any number of mechanisms:</p>
+
+<ul>
+<li>SNMP Poll.</li>
+<li>JMX Poll.</li>
+<li>SNMP Trap.</li>
+<li>Reviewing application logs and counting ERROR lines.</li>
+<li>An application that exports mechanisms as a stream to some endpoint.</li>
+<li>An application that sends events to a collector via syslog, a message queue or bus or chat protocol, an HTTP post to a web service, a generic mailbox mechanism.</li>
+<li>An application that sends events via a message queue or bus to a collector.</li>
+<li>A status/transactional check that grabs a web page and checks it for validity.</li>
+</ul>
+
+
+<p>We tend to want to turn Meters into a push versus pull argument, but it ends up being a false dicotomy. In many cases it depends on the perspective. An application which uses the <a href="https://github.com/codahale/metrics">metrics</a> will feel as it it&#8217;s pushing those data points out, but the collection engine that uses it may pull those data points via JMX calls.</p>
+
+<p>The key with Meter is identifying What you want to be watching. Everything else is plumbing (as if saying that makes it all easier).</p>
+
+<p>Note: While it can&#8217;t be discounted, the storage engine is not necessarily a part of the Meter. In many cases, the storage could also be used by the other disciplines. It&#8217;s capabilities impact Meters, but it is a technology area more than an area of monitoring work.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1263,107 +1331,6 @@ things to show.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/05/language-matters-nitpik-with-chef/">Language Matters: Nitpik With Chef</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-05T23:14:00-08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>For a while now, Chef has bothered me. Some of it I can blame on the
-server setup (pull/push and exposure of general manifests), but
-there&#8217;s been something that&#8217;s been bothering that I hadn&#8217;t been able
-to put my finger on&#8230; until now.</p>
-
-<p>First, I&#8217;m going to come out and admit my bias to a declarative model
-over an imperative model. I won&#8217;t go into why. Burgess does a much
-better job <a href="http://cfengine.com/markburgess/blog_order.html">describing this</a>.</p>
-
-<p>My issue with Chef comes down to one word: action.</p>
-
-<pre><code>package "ntp" do
-  action :install
-end
-</code></pre>
-
-<p>Now, to be fair, this is a very declarative description. If you dig
-into what it&#8217;s doing, you&#8217;ll find that it&#8217;s interrogating the system
-and only installing the package if it needs to, or alternatively,
-it&#8217;ll make sure that the package exists. If that&#8217;s the case, it&#8217;s not
-&#8220;install&#8221;ing every time, it&#8217;s making sure it&#8217;s
-&#8220;install&#8221;ed. &#8220;Install&#8221;ing is a verb (it&#8217;s saying &#8220;action&#8221;), but
-&#8220;Install&#8221;ed is a noun (state).</p>
-
-<p>Why does this matter? Let&#8217;s go back to cfengine:</p>
-
-<pre><code>commands:
-  "yum install -y ntp"
-    ifvarclass =&gt; "!ntp_installed"
-</code></pre>
-
-<p>Now, we&#8217;re further down the slope. This is a command/verb/action -
-there&#8217;s now way around that. We&#8217;ve detached the descriptive goal of
-what we want from how we&#8217;ve written. We have to know that our
-convention for an installed package is to use that command structure,
-and to make sure there&#8217;s a class that checks for if ntp is installed
-or not. The var is in the check, not in the overall description.</p>
-
-<p>So, why is Puppet better?</p>
-
-<pre><code>package { "ntp":
-  ensure =&gt; present
-}
-</code></pre>
-
-<p>There&#8217;s no confusion around this one. It&#8217;s clearly saying make sure
-this package is present/installed. The magic of how that happens is in
-the underlying resource abstraction layer, which is cool in and of
-itself, but it&#8217;s real win is that it allows you to continue thinking
-in a declarative way, not in an imperative way. There&#8217;s no mental
-flipping back and forth.</p>
-
-<p>Ok - so why does <em>that</em> matter?</p>
-
-<p><a href="http://en.wikipedia.org/wiki/Linguistic_relativity">Language matters</a>.
-Language influences the way you conceptualize a problem, plain and
-simple. The BDD guys hark on this as well. I think for sysadmining
-roles to move forward, we need to think in a declarative way. Yes,
-there are times for an imperative method, but not in system
-descriptions.</p>
-
-<p>So, it&#8217;s a nitpik, but it&#8217;s one that can have far reaching impact.</p>
-
-<p>And yes, I know you can do execs in Puppet, so you can shoot yourself
-in the foot, but you&#8217;ll have less misfires with Puppet than with other
-tools because of the way it makes you think.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1379,6 +1346,10 @@ tools because of the way it makes you think.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/10/02/monitoring-discipline-1-meter/">Monitoring Discipline 1: Meter</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/08/15/four-disciplines-of-monitoring/">Four Disciplines of Monitoring</a>
       </li>
     
@@ -1392,10 +1363,6 @@ tools because of the way it makes you think.</p>
     
       <li class="post">
         <a href="/blog/2012/03/31/soo-pids-over-people/">SOO: Pids over People</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/26/ancl-application-network-communication-language/">ANCL: Application Network Communication Language</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sysadmin | CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/blog/categories/sysadmin/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2012-08-15T13:58:20-07:00</updated>
+  <updated>2012-10-03T00:39:58-07:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Monitoring Discipline 1: Meter]]></title>
+    <link href="http://cmceniry.github.com/blog/2012/10/02/monitoring-discipline-1-meter/"/>
+    <updated>2012-10-02T23:52:00-07:00</updated>
+    <id>http://cmceniry.github.com/blog/2012/10/02/monitoring-discipline-1-meter</id>
+    <content type="html"><![CDATA[<p>In the last post, I talked about 4 different monitoring disciplines. In this, I'm talking about the first one: Meters; and try to distinguish some common Meter patterns.</p>
+
+<p>I pick Meter for the first one for two reasons:</p>
+
+<ul>
+<li>It is the first one in the pipeline. It tends to be the closest to the feature being monitored.</li>
+<li>It tends to be the mechanism that I (and I believe many others) think about first.</li>
+</ul>
+
+
+<p>The Meter is the basis of measurement. Whether it's counting the number of bytes going through a network interface, a recording of events generated from snmp traps, a log watcher, or a stream of metrics coming out of an application, the Meter is any item that can be measured or status checked and the path for sending the measurements to consumers who are interested in them. These are two fundamental and distinct sides. In earlier days, they were typically intermingled in one feature or tool, but now technologies allow for different distinctions between those.</p>
+
+<p>There are two main categories of data types for the Meters: numeric, and event based. The primary difference for these is distinguishing between looking at a specific value (or an aggregate or nonvalue items), and looking at a specific event. Numeric values have a continuous meaning - the read at time t will have a different but just as significant meaning than the reading at time t+1. Events on the other hand are not discernable in time - if I receive an event at time t, I may not know the state of the system at t+1 (sometimes I can do another poll, sometimes I can't).</p>
+
+<p>The Meter can use any number of mechanisms:</p>
+
+<ul>
+<li>SNMP Poll.</li>
+<li>JMX Poll.</li>
+<li>SNMP Trap.</li>
+<li>Reviewing application logs and counting ERROR lines.</li>
+<li>An application that exports mechanisms as a stream to some endpoint.</li>
+<li>An application that sends events to a collector via syslog, a message queue or bus or chat protocol, an HTTP post to a web service, a generic mailbox mechanism.</li>
+<li>An application that sends events via a message queue or bus to a collector.</li>
+<li>A status/transactional check that grabs a web page and checks it for validity.</li>
+</ul>
+
+
+<p>We tend to want to turn Meters into a push versus pull argument, but it ends up being a false dicotomy. In many cases it depends on the perspective. An application which uses the <a href="https://github.com/codahale/metrics">metrics</a> will feel as it it's pushing those data points out, but the collection engine that uses it may pull those data points via JMX calls.</p>
+
+<p>The key with Meter is identifying What you want to be watching. Everything else is plumbing (as if saying that makes it all easier).</p>
+
+<p>Note: While it can't be discounted, the storage engine is not necessarily a part of the Meter. In many cases, the storage could also be used by the other disciplines. It's capabilities impact Meters, but it is a technology area more than an area of monitoring work.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Four Disciplines of Monitoring]]></title>
