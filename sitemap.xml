@@ -2,64 +2,68 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://cmceniry.github.com/blog/2012/01/29/first-post/</loc>
-        <lastmod>2012-03-26T22:17:07-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>http://cmceniry.github.com/blog/2012/02/05/language-matters-nitpik-with-chef/</loc>
-        <lastmod>2012-03-26T22:17:07-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>http://cmceniry.github.com/blog/2012/02/20/bret-victor-inventing-on-principle/</loc>
-        <lastmod>2012-03-26T22:17:07-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>
             http://cmceniry.github.com/blog/2012/03/03/in-which-pooh-is-shown-how-enterprise-can-be-a-bug-instead-of-a-feature-dot-dot-dot/
         </loc>
-        <lastmod>2012-03-26T22:17:08-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>http://cmceniry.github.com/blog/2012/03/04/enterprise-coda/</loc>
-        <lastmod>2012-03-26T22:17:08-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>http://cmceniry.github.com/blog/2012/03/04/carbonite-ceo-on-rush-limbaugh/</loc>
-        <lastmod>2012-03-26T22:17:08-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>
             http://cmceniry.github.com/blog/2012/03/26/ancl-application-network-communication-language/
         </loc>
-        <lastmod>2012-03-26T22:19:45-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>http://cmceniry.github.com/blog/2012/03/31/soo-pids-over-people/</loc>
-        <lastmod>2012-03-31T06:30:07-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>http://cmceniry.github.com/blog/2012/04/28/abuser-stories/</loc>
-        <lastmod>2012-04-28T11:03:59-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>
             http://cmceniry.github.com/blog/2012/08/13/first-pass-on-clojure-jmxxmppgateway/
         </loc>
-        <lastmod>2012-08-14T00:18:56-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>http://cmceniry.github.com/blog/2012/08/15/four-disciplines-of-monitoring/</loc>
-        <lastmod>2012-08-15T13:37:02-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
     </url>
     <url>
         <loc>http://cmceniry.github.com/blog/2012/10/02/monitoring-discipline-1-meter/</loc>
-        <lastmod>2012-10-03T00:39:47-07:00</lastmod>
+        <lastmod>2013-03-13T20:32:44-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://cmceniry.github.com/blog/2013/03/13/a-tale-of-two-paases/</loc>
+        <lastmod>2013-03-19T00:14:05-07:00</lastmod>
     </url>
     <url>
         <loc>http://cmceniry.github.com/blog/archives/</loc>
-        <lastmod>2012-10-03T00:39:47-07:00</lastmod>
+        <lastmod>2013-03-19T00:14:05-07:00</lastmod>
     </url>
     <url>
         <loc>http://cmceniry.github.com/</loc>
-        <lastmod>2012-10-03T00:39:47-07:00</lastmod>
+        <lastmod>2013-03-19T00:14:05-07:00</lastmod>
     </url>
 </urlset>
