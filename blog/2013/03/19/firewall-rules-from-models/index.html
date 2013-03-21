@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Firewall Rules from Models - CorgaLabs Blog</title>
+  <meta name="author" content="Chris McEniry">
+
+  
+  <meta name="description" content="I&#8217;m trying to put a little more meat to the bones of my ANCL
+discussion. Unfortunately,
+I can&#8217;t say that I have a tool for it all, yet, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cmceniry.github.com/blog/2013/03/19/firewall-rules-from-models">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="CorgaLabs Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">CorgaLabs Blog</a></h1>
+  
+    <h2>Confessions of a SysAdmin-o-Path</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cmceniry.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Firewall Rules From Models</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-19T00:20:00-07:00" pubdate data-updated="true">Mar 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;m trying to put a little more meat to the bones of my <a href="http://blog.corgalabs.com/blog/2012/03/26/ancl-application-network-communication-language/">ANCL
+discussion</a>. Unfortunately,
+I can&#8217;t say that I have a tool for it all, <em>yet</em>, but there&#8217;s a bit
+more of the theoretical basis for it. Some of the key requirements
+forming around ANCL are:</p>
+
+<ul>
+<li><p>It abstracts the components involved - roles are used instead of
+source IPs and destionation IPs.</p></li>
+<li><p>It generalizes the communication patterns - models are built using
+the roles; these models can be used in different locations by
+identifying what composes the roles.</p></li>
+<li><p>It can compose multiple models together - since the models are
+composed of roles, using the same role in multiple models connects
+them together (caveat in the second side note).</p></li>
+</ul>
+
+
+<p>I was reviewing some slidedecks and came across
+<a href="https://github.com/bulletproofnetworks/ript">Ript</a> which has a <a href="https://speakerdeck.com/auxesis/ript-making-linux-firewall-change-management-resilient">good
+presentation</a>. It
+is a powerful abstraction over iptables. Bonus: It&#8217;s abstraction can
+even be carried to other stateful packet filters, software or
+hardware.</p>
+
+<p>Comparing it to ANCL, there&#8217;s several key differences:</p>
+
+<ul>
+<li><p>A partition is not a connection of models, but a combination of
+them. It&#8217;s an administrative domain which lumps multiple unrelated
+connections together. This is by far the biggest difference and is a
+matter of the mental models.</p></li>
+<li><p>The labels aren&#8217;t the same as roles. They&#8217;re good for identifying,
+but they aren&#8217;t then instantiated. There&#8217;s a single mapping, when
+multiple would be useful. This seems like an implementation detail
+that could be easily addressed.</p></li>
+<li><p>It&#8217;s focus is on specific instantiations of the models. While the
+rules would be portable to different devices, this limits its
+ability to be ported to separate but similar situations. This seems
+like it is a matter of changing conventions (e.g. the naming of the
+labels), but might be more.</p></li>
+</ul>
+
+
+<p>The first item is what it really comes down to is that these are two
+different mental and description models for the problem. Ript is a
+firewall abstraction language, and not necessarily an application
+communication description language. That being said, there are a great
+many other pieces of Ript, not the least of it being something
+concrete, that make it very useful and means I have some work here to
+move ANCL to something that can compare.</p>
+
+<hr />
+
+<p>There&#8217;s also two parts that Ript has also incorporated which I&#8217;ll be
+honest that I don&#8217;t know how to incorporate into ANCL:</p>
+
+<ul>
+<li><p>NATs and SNATs and other translations. In many ways, these are not
+critical to the application communication pattern, at least, not
+critical at an abstract level. It&#8217;s when it&#8217;s applied in specific
+contexts where translations come into play.</p></li>
+<li><p>&#8220;Bad Guy&#8221; Rejects. Like transactions, these aren&#8217;t critical to
+application communication patterns - in fact, these are
+anti-communication patterns. Necessary at times, but not something
+that are accounted for when building the patterns.</p></li>
+</ul>
+
+
+<hr />
+
+<p>The side note from above is that the roles aren&#8217;t completely what are
+connected to each other. Consider two models:</p>
+
+<ol>
+<li><p>A three tier application model which has a &#8220;webserver&#8221; role, an
+&#8220;application&#8221; role, and a &#8220;DB&#8221; role.</p></li>
+<li><p>A DB model which has an &#8220;application&#8221; role and a &#8220;DB&#8221; role.</p></li>
+</ol>
+
+
+<p>As the application owner of the first model, I would elaborate the
+nodes in the &#8220;application&#8221; role. Most likely, the &#8220;DB&#8221; would be
+specified by the DBA. Conversely, as the DB owner, I&#8217;d elaborate the
+nodes in the &#8220;DB&#8221; role, and leave the &#8220;application&#8221; role to someone
+else. In either case, half of the equation is left unfilled. There&#8217;s
+(at least) two ways to approach this:</p>
+
+<ol>
+<li><p>Since the key is to connect the two edges for the
+&#8220;application&#8221;-&#8220;DB&#8221; together, the real role association happens
+there. So, what language should be used to describe these &#8220;edge
+roles&#8221;?</p></li>
+<li><p>The ambiguity can be taken away if we insert &#8220;connection points&#8221; or
+&#8220;service&#8221; points into each model. In this case, in the application
+model, we replace the &#8220;DB&#8221; role with a &#8220;DB&#8221; connection point, and in
+the DB model, we replace the &#8220;application&#8221; role with a &#8220;DB&#8221; connection
+point. When joining these models together, we overlay the connection
+points.</p></li>
+</ol>
+
+
+<p>Not sure which is the right way, so that&#8217;ll probably comes down to
+implementation.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chris McEniry</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-19T00:20:00-07:00" pubdate data-updated="true">Mar 19<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/abstraction/'>abstraction</a>, <a class='category' href='/blog/categories/network/'>network</a>, <a class='category' href='/blog/categories/sysadmin/'>sysadmin</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cmceniry.github.com/blog/2013/03/19/firewall-rules-from-models/" data-via="" data-counturl="http://cmceniry.github.com/blog/2013/03/19/firewall-rules-from-models/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/13/a-tale-of-two-paases/" title="Previous Post: A tale of two PaaSes">&laquo; A tale of two PaaSes</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/03/19/firewall-rules-from-models/">Firewall Rules from Models</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/13/a-tale-of-two-paases/">A tale of two PaaSes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/02/monitoring-discipline-1-meter/">Monitoring Discipline 1: Meter</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/15/four-disciplines-of-monitoring/">Four Disciplines of Monitoring</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/13/first-pass-on-clojure-jmxxmppgateway/">First pass on clojure-jmxxmppgateway</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Chris McEniry -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2013-03-19T00:14:55-07:00</updated>
+  <updated>2013-03-21T00:28:26-07:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -12,6 +12,118 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Firewall Rules from Models]]></title>
+    <link href="http://cmceniry.github.com/blog/2013/03/19/firewall-rules-from-models/"/>
+    <updated>2013-03-19T00:20:00-07:00</updated>
+    <id>http://cmceniry.github.com/blog/2013/03/19/firewall-rules-from-models</id>
+    <content type="html"><![CDATA[<p>I&#8217;m trying to put a little more meat to the bones of my <a href="http://blog.corgalabs.com/blog/2012/03/26/ancl-application-network-communication-language/">ANCL
+discussion</a>. Unfortunately,
+I can&#8217;t say that I have a tool for it all, <em>yet</em>, but there&#8217;s a bit
+more of the theoretical basis for it. Some of the key requirements
+forming around ANCL are:</p>
+
+<ul>
+<li><p>It abstracts the components involved - roles are used instead of
+source IPs and destionation IPs.</p></li>
+<li><p>It generalizes the communication patterns - models are built using
+the roles; these models can be used in different locations by
+identifying what composes the roles.</p></li>
+<li><p>It can compose multiple models together - since the models are
+composed of roles, using the same role in multiple models connects
+them together (caveat in the second side note).</p></li>
+</ul>
+
+
+<p>I was reviewing some slidedecks and came across
+<a href="https://github.com/bulletproofnetworks/ript">Ript</a> which has a <a href="https://speakerdeck.com/auxesis/ript-making-linux-firewall-change-management-resilient">good
+presentation</a>. It
+is a powerful abstraction over iptables. Bonus: It&#8217;s abstraction can
+even be carried to other stateful packet filters, software or
+hardware.</p>
+
+<p>Comparing it to ANCL, there&#8217;s several key differences:</p>
+
+<ul>
+<li><p>A partition is not a connection of models, but a combination of
+them. It&#8217;s an administrative domain which lumps multiple unrelated
+connections together. This is by far the biggest difference and is a
+matter of the mental models.</p></li>
+<li><p>The labels aren&#8217;t the same as roles. They&#8217;re good for identifying,
+but they aren&#8217;t then instantiated. There&#8217;s a single mapping, when
+multiple would be useful. This seems like an implementation detail
+that could be easily addressed.</p></li>
+<li><p>It&#8217;s focus is on specific instantiations of the models. While the
+rules would be portable to different devices, this limits its
+ability to be ported to separate but similar situations. This seems
+like it is a matter of changing conventions (e.g. the naming of the
+labels), but might be more.</p></li>
+</ul>
+
+
+<p>The first item is what it really comes down to is that these are two
+different mental and description models for the problem. Ript is a
+firewall abstraction language, and not necessarily an application
+communication description language. That being said, there are a great
+many other pieces of Ript, not the least of it being something
+concrete, that make it very useful and means I have some work here to
+move ANCL to something that can compare.</p>
+
+<hr />
+
+<p>There&#8217;s also two parts that Ript has also incorporated which I&#8217;ll be
+honest that I don&#8217;t know how to incorporate into ANCL:</p>
+
+<ul>
+<li><p>NATs and SNATs and other translations. In many ways, these are not
+critical to the application communication pattern, at least, not
+critical at an abstract level. It&#8217;s when it&#8217;s applied in specific
+contexts where translations come into play.</p></li>
+<li><p>&#8220;Bad Guy&#8221; Rejects. Like transactions, these aren&#8217;t critical to
+application communication patterns - in fact, these are
+anti-communication patterns. Necessary at times, but not something
+that are accounted for when building the patterns.</p></li>
+</ul>
+
+
+<hr />
+
+<p>The side note from above is that the roles aren&#8217;t completely what are
+connected to each other. Consider two models:</p>
+
+<ol>
+<li><p>A three tier application model which has a &#8220;webserver&#8221; role, an
+&#8220;application&#8221; role, and a &#8220;DB&#8221; role.</p></li>
+<li><p>A DB model which has an &#8220;application&#8221; role and a &#8220;DB&#8221; role.</p></li>
+</ol>
+
+
+<p>As the application owner of the first model, I would elaborate the
+nodes in the &#8220;application&#8221; role. Most likely, the &#8220;DB&#8221; would be
+specified by the DBA. Conversely, as the DB owner, I&#8217;d elaborate the
+nodes in the &#8220;DB&#8221; role, and leave the &#8220;application&#8221; role to someone
+else. In either case, half of the equation is left unfilled. There&#8217;s
+(at least) two ways to approach this:</p>
+
+<ol>
+<li><p>Since the key is to connect the two edges for the
+&#8220;application&#8221;-&#8220;DB&#8221; together, the real role association happens
+there. So, what language should be used to describe these &#8220;edge
+roles&#8221;?</p></li>
+<li><p>The ambiguity can be taken away if we insert &#8220;connection points&#8221; or
+&#8220;service&#8221; points into each model. In this case, in the application
+model, we replace the &#8220;DB&#8221; role with a &#8220;DB&#8221; connection point, and in
+the DB model, we replace the &#8220;application&#8221; role with a &#8220;DB&#8221; connection
+point. When joining these models together, we overlay the connection
+points.</p></li>
+</ol>
+
+
+<p>Not sure which is the right way, so that&#8217;ll probably comes down to
+implementation.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A tale of two PaaSes]]></title>
