@@ -9,9 +9,8 @@
   <meta name="author" content="Chris McEniry">
 
   
-  <meta name="description" content="I&#8217;m trying to put a little more meat to the bones of my ANCL
-discussion. Unfortunately,
-I can&#8217;t say that I have a tool for it all, yet, &hellip;">
+  <meta name="description" content="This is something that I&#8217;ve thought for a while, but am trying to get
+the backlog of thoughts out. I&#8217;ll admit that I run bind for DNS &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,153 @@ I can&#8217;t say that I have a tool for it all, yet, &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/23/dns-inverting-the-view/">DNS: Inverting the View</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-23T12:14:00-07:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is something that I&#8217;ve thought for a while, but am trying to get
+the backlog of thoughts out.</p>
+
+<p>I&#8217;ll admit that I run bind for DNS because it&#8217;s a &#8220;safe&#8221;
+default. There&#8217;s many cons against it, but it does work well enough
+for many-many situations. But one of the issues that I&#8217;ve run into is
+that how views are managed are counter to how I would like them to be
+managed 99% of the time.</p>
+
+<p>Specifically, the Zones are children of Views and when working with
+the underlying configuration files, you have to maintain two separate
+sets of files (or point to the same files and have the same data). I
+want it to be the opposite to some degree. I want to be able to
+maintain one zone file which mixes views with some markup on the
+records themselves.</p>
+
+<p>This isn&#8217;t necessarily a bind thing; though, bind certainly sets the
+stage for others. It matches most DNS servers because it matches how
+the mental model of DNS Zone delegation goes, but that may not be how
+the mental model of record management in the context of views should
+be. There may also be technical limitation, if you&#8217;re mixing zone
+delegation of children zones (e.g. record bad in zone
+child.example.com) in one view and child records that existing
+directly . But honestly, in those cases, I think it goes back to the
+&#8220;that&#8217;s an antipattern that you really shouldn&#8217;t be doing even when
+you think you should be doing&#8221; that gave rise to linting programs, so
+I&#8217;m going to discount that a bit.</p>
+
+<p>The key here is that when I work on records that are split DNS, I&#8217;m
+doing it on a per-record basis. I have to ask the question when I&#8217;m
+looking at the record &#8220;where should this be visible from?&#8221; In the
+context of the per-record, it&#8217;s much easier to answer. When I look at
+an entire zone, it&#8217;s a PITA to say &#8220;where should <em>all of these</em> be
+visibile from?&#8221;</p>
+
+<p>Another side effect we end up with is that due to this extra overhead
+of managing the split zones, we end up with some intenal.example.com
+zone. That &#8220;internal&#8221; starts polluting everything. Yes, it&#8217;s ugly, but
+the problem is more than just aesthetics. If you want to move a host
+from one side to the other, or have a host respond to both sides, or
+have any SSL certificates anywhere, or not expose that you have a
+secret &#8220;internal&#8221; domain, or avoid any of a whole host of problems
+because DNS is so critical to how we run networks, then, well, then
+you&#8217;re sunk.</p>
+
+<p>Again, this isn&#8217;t necessarily limited to bind, and honestly, how bind
+or any other DNS server implements it doesn&#8217;t really matter. The DNS
+server should be responsible for serving out queries. A separate
+service should be responsible for the management of DNS. Everyone
+wants a nice pretty (for whatever your definition of pretty is)
+administrative interface. That is something that is separate and
+builds on top of it. Realistically, the admin interface can be very
+different from the configuration files. That&#8217;s part of the whole
+point, isn&#8217;t it? The semantics and languaged used by the admin
+interface get mapped into different configuration formats. If you want
+to add a new DNS service, all you have to do is figure out the
+mapping. The biggest mistake we make sometimes is directly
+implementing the configuration format of the specific DNS service back
+in the administrative interface. While it&#8217;d be nice if they match up,
+it&#8217;s more critical to have the administrative interface match the
+model that you believe is the most appropraite for the people using
+it, and sometimes that doesn&#8217;t match the configuration files.</p>
+
+<p>Along those lines, although I like bind from a practical standpoint, I
+also like the make of tinydns, largely because it does this well. In
+tinydns configuration, you name your views:</p>
+
+<pre><code>    %internal:10
+    %external:
+</code></pre>
+
+<p>Then you can follow up with associating the actual records with each
+view:</p>
+
+<pre><code>    +www.example.com:1.2.3.4:::external
+    +www.example.com:10.11.12.13:::internal
+</code></pre>
+
+<p>It&#8217;s all in one nice neat location to look at.</p>
+
+<p>There&#8217;s three extensions that I&#8217;d make here:</p>
+
+<ol>
+<li><p>The location part should be a tag - so you can have multiple
+locations specified in one line. Yes, this is an edge case since most
+people only deal with two views (internal and external), but it does
+have meaning if you have more than 2 views. For instance, if you have
+public, sitea, and siteb, and don&#8217;t want &#8220;bothsites&#8221; to be public:</p>
+
+<pre><code>  +www.example.com:1.2.3.4:::external
+  +www.example.com:10.11.12.13:::sitea,siteb
+  +bothsites.example.com:10.11.12.14:::sitea,siteb
+</code></pre></li>
+<li><p>The location indicator for tinydns is really an indicator of the
+view that you want it to be present in, for whatever properties, of
+which clientip/location is only one, apply to the view. Basically, I&#8217;m
+arguing that tiny-dns should support equivalents to the
+match-destinations parameters of bind&#42;.</p></li>
+<li><p>Add some magic for GeoDNS and let it be its own &#8220;location&#8221;
+tag. This is some syntactic sugar that makes it easier to do since
+it&#8217;s so common today and interacts interestingly with views.</p></li>
+</ol>
+
+
+<p>&#42; Actually, I&#8217;m not arguing that tinsdns should support that, just
+like I&#8217;m not saying that bind needs to support per-record view
+attributes. When it comes down to it, if the proper way for tinydns to
+handle the match-destionations parameter is to run multiple tinsdns
+instances bound to different destinations, that&#8217;s perfectly fine. It&#8217;s
+the administrative wrappers or management interface around the DNS
+service itself that needs to support this semantic, and then map that
+out to the DNS service.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1338,72 +1484,6 @@ me).</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/04/enterprise-coda/">Enterprise: Coda</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-04T14:29:00-08:00" pubdate data-updated="true">Mar 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I know I&#8217;m looking for confirmation bias here, but I think <a href="http://sethgodin.typepad.com/seths_blog/2012/03/why-lie.html">Seth
-Godin</a>
-does actually apply to my interactions with arrogant vendors.</p>
-
-<pre><code>...when we clearly articulate why we're not going to do business, the
-salesperson responds by questioning the judgment of the prospect.
-
-...
-
-Someone who chooses not to buy from you isn't stupid. They're not
-unable to process ideas logically, nor are they unethical or
-manipulated by others. No, it's simpler than that:
-
-Given what they know and what they believe, the prospect is making
-exactly the right decision.
-
-We always make our decision based on what we know and
-believe. That's a tautology, based on the definition... a decision
-is the path you take based on what you know and believe, right?
-
-The challenge, then, it seems to me, is to realize that perhaps
-the prospect knows something you don't, or, just as likely,
-doesn't believe what you believe. Your job as a marketer is to
-figure out what your prospect's biases and worldview and fears and
-beliefs are, and as a salesperson, your job is to help them know
-what you know.
-</code></pre>
-
-<p>To Vendors: Rather than belittling what isn&#8217;t yours, how about you
-talk about facts? I&#8217;m not an idiot who you can smokescreen, so don&#8217;t
-waste our time doing that.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1419,6 +1499,10 @@ waste our time doing that.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/23/dns-inverting-the-view/">DNS: Inverting the View</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/19/firewall-rules-from-models/">Firewall Rules from Models</a>
       </li>
     
@@ -1432,10 +1516,6 @@ waste our time doing that.</p>
     
       <li class="post">
         <a href="/blog/2012/08/15/four-disciplines-of-monitoring/">Four Disciplines of Monitoring</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/13/first-pass-on-clojure-jmxxmppgateway/">First pass on clojure-jmxxmppgateway</a>
       </li>
     
   </ul>
