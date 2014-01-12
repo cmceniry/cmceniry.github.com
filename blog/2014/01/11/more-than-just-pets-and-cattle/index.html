@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>More than just Pets and Cattle - CorgaLabs Blog</title>
+  <meta name="author" content="Chris McEniry">
+
+  
+  <meta name="description" content="wIt&#8217;s been said many times many ways that cloud) servers should be
+treated like cattle, and not like pets. Looks like the first reference
+is &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cmceniry.github.com/blog/2014/01/11/more-than-just-pets-and-cattle">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="CorgaLabs Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">CorgaLabs Blog</a></h1>
+  
+    <h2>Confessions of a SysAdmin-o-Path</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:cmceniry.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">More Than Just Pets and Cattle</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-11T21:51:00-08:00" pubdate data-updated="true">Jan 11<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>wIt&#8217;s been said many times many ways that cloud) servers should be
+treated like cattle, and not like pets. Looks like the first reference
+is
+<a href="http://www.slideshare.net/randybias/architectures-for-open-and-scalable-clouds">Bias</a>,
+but there are quite a few others:
+<a href="http://www.computerweekly.com/blogs/cwdn/2013/04/treat-cloud-servers-like-cattle-not-puppies.html">here</a>
+<a href="http://www.gregarnette.com/blog/2012/05/cloud-servers-are-not-our-pets/">here</a>
+<a href="http://www.theregister.co.uk/2013/03/18/servers_pets_or_cattle_cern/">here</a>
+<a href="http://www.dameware.com/cmdprompt/are-your-servers-pets-or-cattle-.aspx">here</a>
+just the top ones on a google search. The main idea being that we had
+this tendency when the servers were fewer yet more longitudinal to
+treat them delicately: putting care and feeding into each of them; now
+that we (can) have large amounts of short lived instances, we can&#8217;t be
+bothered with the same care.</p>
+
+<p>That&#8217;s a completely valid way of thinking (it&#8217;s a great <em>place</em> to
+be), so I&#8217;m curious as to where its limits are. In some ways, looking
+at just servers that way is looking at a point in time and
+capabilities and thought.</p>
+
+<p>We&#8217;ve all had pet files. Remember that hand crafted config file that
+you spent days of your life tweaking to get it just right? Maybe it
+was specific to that host. At some point, you groomed it enough that
+it became a golden file for your entire environment and you could copy
+it and push it out to all of the other servers. Then you pushed it out
+using some higher level config management system. Then you moved up
+some semantic level and the file itself got abstracted into specific
+resources, and those were composited and pushed out. So, files started
+as pets, and by realizing that the file was only a model of something
+that we actually cared about, they moved to cattle.</p>
+
+<p>Really, pets are pets because you&#8217;ve become attached to them - you
+can&#8217;t clone them, and it hurts to lose them. Cattle is cattle because
+it&#8217;s easy to get another and it&#8217;s not a big deal if you lose
+it. There&#8217;s a lot of different specific means to achieve these, but
+it&#8217;s these two fundamental classes of properties that enable this
+thinking:</p>
+
+<p>1.) It&#8217;s easy to copy, and
+2.) It&#8217;s easy to handle losing it (enter whatever you want to say
+about antifrigilness here).</p>
+
+<p>But thinking about files and servers is so the 2000-noughts. What are
+our pets now?</p>
+
+<p>Moving up from the server, is the cluster. Are clusters now the new
+pets? or can we treat them as cattle as well? Given sufficiently large
+IaaS services and strong configuration management systems and lots of
+variable substitution (well, probably more like locally realized
+global patterns), it&#8217;s actually fairly easy to fulfill property #1
+above - copying. As for #2, if you have sufficient global load
+balancing of any form (DNS, anycast, etc), you can easily route
+traffic to working clusters, or more precisely, away from failing
+(lost) clusters.</p>
+
+<p>So, pulling further out, our clusters collapse into a service. Is that
+our new pet? With even more config and *aaS and some client service
+discovery (aka any sufficiently advanced delivery model), you can
+certainly copy it. Though, if you lose your source code, it would
+definitely take a bit to reproduce the service (get all those coders
+together again, etc). What about losing it? Well, if you are a single
+feature service inside of a larger service, you might be able to be
+disabled, so you can lose it. But what about that larger service? I
+think for most businesses, you can&#8217;t just lose it.</p>
+
+<p>So, that&#8217;s your pet.</p>
+
+<p>Maybe.</p>
+
+<p>(One could examine businesses and business models and plans and use
+the same comparisons, but I think this first point - what makes
+something pet versus cattle across various object domains is copying
+and dealing with lose - is done well enough, so my second point&#8230;).</p>
+
+<p>There&#8217;s another way to slice (heh) this metaphor: milk. Not all cattle
+is used for steak. Some cattle is used to produce a product, bulked up
+again, then produce more of the same product. That cycle time might be
+a little too short, so the metaphor might make a little more sense by
+using different livestock - sheep. Some sheep are raise for mutton,
+some sheep are raise for wool (and yes, you can do both, but
+still). For the wool sheep, after the wool is reaped each year, you
+have to let it grow out again before you can reap it again, all the
+while caring for the sheep. The sheep itself stays around, but you
+continue to reuse it.</p>
+
+<p>That being said, you can use other sheep for the same purpose because
+lots of wool is the same; and sheep have their own way to easily copy
+each other well enough.</p>
+
+<p>But you still don&#8217;t really want to lose a sheep. You still gotta deal
+with it going away and getting the replacement there. The same really
+applies to larger services (or businesses) - maybe you can copy it,
+but you really don&#8217;t want to deal with it going away.</p>
+
+<p>So, my second point is really that there&#8217;s a third category between
+pets (hard to copy, hard to deal with loss) and (steak) cattle (easy
+to copy, easy to deal with loss), and that&#8217;s of the milk cattle (easy
+to copy, but still hard to deal with lose). This last category by its
+very nature persists and is modified, rather than being destroyed and
+rebuilt each time. All of those things that we had to think about for
+when we wanted to change our pets still apply. Maybe it&#8217;s not to
+servers, but the lessons learned are still valuable.</p>
+
+<p>And lastly, not everyone is <em>there</em>. And not everyone who is <em>there</em>
+is <em>there</em> for everything that they do (there&#8217;s probably a mix of
+services made of cattle and services made of pets in a lot of
+organizations). So don&#8217;t feel bad. Just figure out which one it should
+be and work to improve.</p>
+
+<p>PS Interesting enough, if we do the combinations of the above, there&#8217;s
+the last class: a service which is hard to copy, but you can deal with
+failure. I&#8217;m not really sure what that looks like, so I&#8217;m going to
+leave it as an exercise for the reader. I&#8217;d be curious if anyone comes
+up with something interesting. Contact me.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chris McEniry</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-11T21:51:00-08:00" pubdate data-updated="true">Jan 11<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cloud/'>Cloud</a>, <a class='category' href='/blog/categories/configuration-management/'>Configuration Management</a>, <a class='category' href='/blog/categories/sysadmin/'>SysAdmin</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://cmceniry.github.com/blog/2014/01/11/more-than-just-pets-and-cattle/" data-via="" data-counturl="http://cmceniry.github.com/blog/2014/01/11/more-than-just-pets-and-cattle/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/23/dns-inverting-the-view/" title="Previous Post: DNS: Inverting the View">&laquo; DNS: Inverting the View</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/11/more-than-just-pets-and-cattle/">More than just Pets and Cattle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/23/dns-inverting-the-view/">DNS: Inverting the View</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/19/firewall-rules-from-models/">Firewall Rules from Models</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/13/a-tale-of-two-paases/">A tale of two PaaSes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/02/monitoring-discipline-1-meter/">Monitoring Discipline 1: Meter</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Chris McEniry -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
