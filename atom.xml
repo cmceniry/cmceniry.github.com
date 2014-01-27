@@ -4,7 +4,7 @@
   <title><![CDATA[CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2014-01-11T21:56:59-08:00</updated>
+  <updated>2014-01-26T22:41:41-08:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Presenting at CascadiaIT 2014]]></title>
+    <link href="http://cmceniry.github.com/blog/2014/01/26/presenting-at-cascadiait-2014/"/>
+    <updated>2014-01-26T22:00:00-08:00</updated>
+    <id>http://cmceniry.github.com/blog/2014/01/26/presenting-at-cascadiait-2014</id>
+    <content type="html"><![CDATA[<p>Hey Kids! Big News!</p>
+
+<p>I&#8217;ll be presenting at <a href="http://casitconf.org/casitconf14/">CascadiaIT 2014</a>! I&#8217;ve got two items:</p>
+
+<ul>
+<li><a href="http://casitconf.org/casitconf14/conference/tutorial-descriptions/">A Quick Introduction to System Tools Programming with Go</a> Tutorial</li>
+<li><a href="http://casitconf.org/casitconf14/talk-descriptions/">Value Stream Mapping Your Workflows for Fun and Profit</a> Talk</li>
+</ul>
+
+
+<p>Registration is now open:</p>
+
+<p><a href="http://casitconf.org/casitconf14/registration-is-now-open/">http://casitconf.org/casitconf14/registration-is-now-open/</a></p>
+
+<p>So, if you&#8217;re anywhere near the Seattle area the second weekend in March, come on down to CascadiaIT!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[More than just Pets and Cattle]]></title>
