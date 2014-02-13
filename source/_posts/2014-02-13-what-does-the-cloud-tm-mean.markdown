@@ -1,0 +1,45 @@
+---
+layout: post
+title: "What does The Cloud(tm) mean?"
+date: 2014-02-13 01:20
+comments: true
+categories: 
+- sysadmin
+- cloud
+---
+
+
+The Cloud (tm) - it’s a term that is far too encompassing of too many concepts.
+
+At first, I thought the problem with describing it was that it was like the image of 10 blind people trying to say what an elephant was by each describing the one part they could feel. The more I think about it, that doesn’t even do it. The focus of that description is all about the "physical” description, but we’ve ascribed so much more into what we think of as The Cloud (tm). Not only do we talk about what it is, but also what it can do, and what it can allow others to do. It’d be the same as trying to describe how an elephant herd interacts, or how the use of domesticated elephants affected agriculture or helped win a war.
+
+In short, it’s impact is just as and probably more important than just what it is. So, let’s look at both of those in turn.
+
+Physically, the cloud is a combination of the multiple \*aaSes that exist, but largely focused on Software, Infrastructure, and Platform. Disclosure: In my realm, I end up interacting with the latter two, so this is largely concerned with those. To be clear, I say Infrastructure-aaS and mean any product which provides an abstraction of compute, storage and networking, which allows a user to obtain resources in a low latency (ideally sub-minutes given with self-service and API interfaces) SLA. PaaS is similar to the above but focuses on the application container (e.g. servlet engine, dynamic web server backend, database) instead of infrastructure components. The Cloud (tm) can be public or private, it can be outsourced or internal, and it can even be service organizations in addition to true services.
+
+We add confusion because all of these are “physical” descriptions, and so we tend to first compare on that level. Many look at The Cloud (tm) as a single solution (most of the time, it’s AWS, but it can also happen on the other side with internal solutions). But really, we want to agree on what aspects of those solutions are important and the trade off that those require.
+
+So what are those aspects? What can The Cloud (tm) enable? Well, in not particular order, and definitely not complete:
+
+* It can be a cash flow offset. It allows you to focus on leveled burn (operational expenses) rather than big bang spends with depreciation (capital expenditures). How much this matters depends how your corporate finances are structured.
+
+* It can provide dynamic resource commitments. You can purchase resources for short term usages. The dynamic capability leads to a need for rapidly providing and taking those away. How much this matters depends on your duty cycle, your bursts, and what margins are like with the provider.
+
+* It can provide rapid global ramp up of resources. From the last point, where you get those dynamic resources, you can choose where they go. How much this matters depends on your ability to configure those resources rapidly and the global properties of your application, as well as the provider capabilities (e.g. points of presence).
+
+* It can be automation point. Not talk about The Cloud (tm) can happen without some aspect of automation. Every cloud is built upon it. Every interaction asks the question “how can we automate it?”  How much this matters - well, it just matters. Your ability to execute on this drives how helpful it is.
+
+* It can change the semantics of application deployments. You move from talking about a build of an application or code package, and towards building (at least for now) machine images or container images (with application and dependent code inside). How much this matters depends on how you do your application configuration.
+
+* It can change the semantics of host and system management. You move from talking about individual hosts to talking about abstract roles or clusters. See [Pets and Cattle](http://blog.corgalabs.com/blog/2014/01/11/more-than-just-pets-and-cattle/).
+
+* It can provide you a way to level your production. If you’re not familiar with [Heijunka](http://en.wikipedia.org/wiki/Production_leveling), it’s a way to smooth out the flow of invetory through the delivery pipeline. Virtual environments enable you to provide the just the right resources just in time, by taking larger undifferentiated resources and honing them into what you need. Previously, you had to be very targeted and keep a lot of pre-differentiated products that can be used when need be. This leveling helps speed everything up without keeping around too much inventory. How much this matters depends on how many different resource types you really need, and how much overhead you’re willing to take.
+
+* It can let users take care of themselves. It can provide self-service in very structured ways. You can replace people and teams and service catalogs with APIs. Replace is probably the wrong word as someone or something needs to handle the underlying infrastructure of the service, and the service itself becomes a very codified service catalog. How much this matters depends on the level of responsibility being expected and accepted by the service users.
+
+* It can transfer work and risk to a third party. You can outsource what you deem to be noncritical and/or commoditized aspects of your business to others. The funny thing about risk is that it is rarely actually transferred. How much this matters depends on how tolerant of risk you are, how much you can negotiate, and how well you can handle this internally.
+
+Ultimately, it’s a matter of gaining some level of real or perceived efficiency. That efficiency can come in the form of economic (as in using for bursting, or cash flow changes), or in the form of faster changes, or in the form of shifting responsibilities, or probably others.
+
+A lot of the above can be achieved without using The Cloud (tm), and many of the aspects run counter to each other (e.g. virtualization overhead versus flexibility). All in all that makes it impossible to say that The Cloud (tm) is goal. The goal is ultimately to make money, but the question is which aspect(s) of The Cloud (tm) do the best to get you that?
+
