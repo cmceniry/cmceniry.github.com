@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Cloud | CorgaLabs Blog]]></title>
+  <title><![CDATA[Category: cloud | CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/blog/categories/cloud/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2014-01-26T22:41:41-08:00</updated>
+  <updated>2014-02-13T01:24:16-08:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -14,199 +14,38 @@
 
   
   <entry>
-    <title type="html"><![CDATA[More than just Pets and Cattle]]></title>
-    <link href="http://cmceniry.github.com/blog/2014/01/11/more-than-just-pets-and-cattle/"/>
-    <updated>2014-01-11T21:51:00-08:00</updated>
-    <id>http://cmceniry.github.com/blog/2014/01/11/more-than-just-pets-and-cattle</id>
-    <content type="html"><![CDATA[<p>wIt's been said many times many ways that cloud) servers should be
-treated like cattle, and not like pets. Looks like the first reference
-is
-<a href="http://www.slideshare.net/randybias/architectures-for-open-and-scalable-clouds">Bias</a>,
-but there are quite a few others:
-<a href="http://www.computerweekly.com/blogs/cwdn/2013/04/treat-cloud-servers-like-cattle-not-puppies.html">here</a>
-<a href="http://www.gregarnette.com/blog/2012/05/cloud-servers-are-not-our-pets/">here</a>
-<a href="http://www.theregister.co.uk/2013/03/18/servers_pets_or_cattle_cern/">here</a>
-<a href="http://www.dameware.com/cmdprompt/are-your-servers-pets-or-cattle-.aspx">here</a>
-just the top ones on a google search. The main idea being that we had
-this tendency when the servers were fewer yet more longitudinal to
-treat them delicately: putting care and feeding into each of them; now
-that we (can) have large amounts of short lived instances, we can't be
-bothered with the same care.</p>
+    <title type="html"><![CDATA[What does The Cloud(tm) mean?]]></title>
+    <link href="http://cmceniry.github.com/blog/2014/02/13/what-does-the-cloud-tm-mean/"/>
+    <updated>2014-02-13T01:20:00-08:00</updated>
+    <id>http://cmceniry.github.com/blog/2014/02/13/what-does-the-cloud-tm-mean</id>
+    <content type="html"><![CDATA[<p>The Cloud (tm) - it’s a term that is far too encompassing of too many concepts.</p>
 
-<p>That's a completely valid way of thinking (it's a great <em>place</em> to
-be), so I'm curious as to where its limits are. In some ways, looking
-at just servers that way is looking at a point in time and
-capabilities and thought.</p>
+<p>At first, I thought the problem with describing it was that it was like the image of 10 blind people trying to say what an elephant was by each describing the one part they could feel. The more I think about it, that doesn’t even do it. The focus of that description is all about the "physical” description, but we’ve ascribed so much more into what we think of as The Cloud (tm). Not only do we talk about what it is, but also what it can do, and what it can allow others to do. It’d be the same as trying to describe how an elephant herd interacts, or how the use of domesticated elephants affected agriculture or helped win a war.</p>
 
-<p>We've all had pet files. Remember that hand crafted config file that
-you spent days of your life tweaking to get it just right? Maybe it
-was specific to that host. At some point, you groomed it enough that
-it became a golden file for your entire environment and you could copy
-it and push it out to all of the other servers. Then you pushed it out
-using some higher level config management system. Then you moved up
-some semantic level and the file itself got abstracted into specific
-resources, and those were composited and pushed out. So, files started
-as pets, and by realizing that the file was only a model of something
-that we actually cared about, they moved to cattle.</p>
+<p>In short, it’s impact is just as and probably more important than just what it is. So, let’s look at both of those in turn.</p>
 
-<p>Really, pets are pets because you've become attached to them - you
-can't clone them, and it hurts to lose them. Cattle is cattle because
-it's easy to get another and it's not a big deal if you lose
-it. There's a lot of different specific means to achieve these, but
-it's these two fundamental classes of properties that enable this
-thinking:</p>
+<p>Physically, the cloud is a combination of the multiple *aaSes that exist, but largely focused on Software, Infrastructure, and Platform. Disclosure: In my realm, I end up interacting with the latter two, so this is largely concerned with those. To be clear, I say Infrastructure-aaS and mean any product which provides an abstraction of compute, storage and networking, which allows a user to obtain resources in a low latency (ideally sub-minutes given with self-service and API interfaces) SLA. PaaS is similar to the above but focuses on the application container (e.g. servlet engine, dynamic web server backend, database) instead of infrastructure components. The Cloud (tm) can be public or private, it can be outsourced or internal, and it can even be service organizations in addition to true services.</p>
 
-<p>1.) It's easy to copy, and
-2.) It's easy to handle losing it (enter whatever you want to say
-about antifrigilness here).</p>
+<p>We add confusion because all of these are “physical” descriptions, and so we tend to first compare on that level. Many look at The Cloud (tm) as a single solution (most of the time, it’s AWS, but it can also happen on the other side with internal solutions). But really, we want to agree on what aspects of those solutions are important and the trade off that those require.</p>
 
-<p>But thinking about files and servers is so the 2000-noughts. What are
-our pets now?</p>
+<p>So what are those aspects? What can The Cloud (tm) enable? Well, in not particular order, and definitely not complete:</p>
 
-<p>Moving up from the server, is the cluster. Are clusters now the new
-pets? or can we treat them as cattle as well? Given sufficiently large
-IaaS services and strong configuration management systems and lots of
-variable substitution (well, probably more like locally realized
-global patterns), it's actually fairly easy to fulfill property #1
-above - copying. As for #2, if you have sufficient global load
-balancing of any form (DNS, anycast, etc), you can easily route
-traffic to working clusters, or more precisely, away from failing
-(lost) clusters.</p>
+<ul>
+<li><p>It can be a cash flow offset. It allows you to focus on leveled burn (operational expenses) rather than big bang spends with depreciation (capital expenditures). How much this matters depends how your corporate finances are structured.</p></li>
+<li><p>It can provide dynamic resource commitments. You can purchase resources for short term usages. The dynamic capability leads to a need for rapidly providing and taking those away. How much this matters depends on your duty cycle, your bursts, and what margins are like with the provider.</p></li>
+<li><p>It can provide rapid global ramp up of resources. From the last point, where you get those dynamic resources, you can choose where they go. How much this matters depends on your ability to configure those resources rapidly and the global properties of your application, as well as the provider capabilities (e.g. points of presence).</p></li>
+<li><p>It can be automation point. Not talk about The Cloud (tm) can happen without some aspect of automation. Every cloud is built upon it. Every interaction asks the question “how can we automate it?”  How much this matters - well, it just matters. Your ability to execute on this drives how helpful it is.</p></li>
+<li><p>It can change the semantics of application deployments. You move from talking about a build of an application or code package, and towards building (at least for now) machine images or container images (with application and dependent code inside). How much this matters depends on how you do your application configuration.</p></li>
+<li><p>It can change the semantics of host and system management. You move from talking about individual hosts to talking about abstract roles or clusters. See <a href="http://blog.corgalabs.com/blog/2014/01/11/more-than-just-pets-and-cattle/">Pets and Cattle</a>.</p></li>
+<li><p>It can provide you a way to level your production. If you’re not familiar with <a href="http://en.wikipedia.org/wiki/Production_leveling">Heijunka</a>, it’s a way to smooth out the flow of invetory through the delivery pipeline. Virtual environments enable you to provide the just the right resources just in time, by taking larger undifferentiated resources and honing them into what you need. Previously, you had to be very targeted and keep a lot of pre-differentiated products that can be used when need be. This leveling helps speed everything up without keeping around too much inventory. How much this matters depends on how many different resource types you really need, and how much overhead you’re willing to take.</p></li>
+<li><p>It can let users take care of themselves. It can provide self-service in very structured ways. You can replace people and teams and service catalogs with APIs. Replace is probably the wrong word as someone or something needs to handle the underlying infrastructure of the service, and the service itself becomes a very codified service catalog. How much this matters depends on the level of responsibility being expected and accepted by the service users.</p></li>
+<li><p>It can transfer work and risk to a third party. You can outsource what you deem to be noncritical and/or commoditized aspects of your business to others. The funny thing about risk is that it is rarely actually transferred. How much this matters depends on how tolerant of risk you are, how much you can negotiate, and how well you can handle this internally.</p></li>
+</ul>
 
-<p>So, pulling further out, our clusters collapse into a service. Is that
-our new pet? With even more config and *aaS and some client service
-discovery (aka any sufficiently advanced delivery model), you can
-certainly copy it. Though, if you lose your source code, it would
-definitely take a bit to reproduce the service (get all those coders
-together again, etc). What about losing it? Well, if you are a single
-feature service inside of a larger service, you might be able to be
-disabled, so you can lose it. But what about that larger service? I
-think for most businesses, you can't just lose it.</p>
 
-<p>So, that's your pet.</p>
+<p>Ultimately, it’s a matter of gaining some level of real or perceived efficiency. That efficiency can come in the form of economic (as in using for bursting, or cash flow changes), or in the form of faster changes, or in the form of shifting responsibilities, or probably others.</p>
 
-<p>Maybe.</p>
-
-<p>(One could examine businesses and business models and plans and use
-the same comparisons, but I think this first point - what makes
-something pet versus cattle across various object domains is copying
-and dealing with lose - is done well enough, so my second point...).</p>
-
-<p>There's another way to slice (heh) this metaphor: milk. Not all cattle
-is used for steak. Some cattle is used to produce a product, bulked up
-again, then produce more of the same product. That cycle time might be
-a little too short, so the metaphor might make a little more sense by
-using different livestock - sheep. Some sheep are raise for mutton,
-some sheep are raise for wool (and yes, you can do both, but
-still). For the wool sheep, after the wool is reaped each year, you
-have to let it grow out again before you can reap it again, all the
-while caring for the sheep. The sheep itself stays around, but you
-continue to reuse it.</p>
-
-<p>That being said, you can use other sheep for the same purpose because
-lots of wool is the same; and sheep have their own way to easily copy
-each other well enough.</p>
-
-<p>But you still don't really want to lose a sheep. You still gotta deal
-with it going away and getting the replacement there. The same really
-applies to larger services (or businesses) - maybe you can copy it,
-but you really don't want to deal with it going away.</p>
-
-<p>So, my second point is really that there's a third category between
-pets (hard to copy, hard to deal with loss) and (steak) cattle (easy
-to copy, easy to deal with loss), and that's of the milk cattle (easy
-to copy, but still hard to deal with lose). This last category by its
-very nature persists and is modified, rather than being destroyed and
-rebuilt each time. All of those things that we had to think about for
-when we wanted to change our pets still apply. Maybe it's not to
-servers, but the lessons learned are still valuable.</p>
-
-<p>And lastly, not everyone is <em>there</em>. And not everyone who is <em>there</em>
-is <em>there</em> for everything that they do (there's probably a mix of
-services made of cattle and services made of pets in a lot of
-organizations). So don't feel bad. Just figure out which one it should
-be and work to improve.</p>
-
-<p>PS Interesting enough, if we do the combinations of the above, there's
-the last class: a service which is hard to copy, but you can deal with
-failure. I'm not really sure what that looks like, so I'm going to
-leave it as an exercise for the reader. I'd be curious if anyone comes
-up with something interesting. Contact me.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A tale of two PaaSes]]></title>
-    <link href="http://cmceniry.github.com/blog/2013/03/13/a-tale-of-two-paases/"/>
-    <updated>2013-03-13T20:38:00-07:00</updated>
-    <id>http://cmceniry.github.com/blog/2013/03/13/a-tale-of-two-paases</id>
-    <content type="html"><![CDATA[<p>I spend a good amount of time trying to figure out if my operational
-team can do much to make the general engineering efforts more
-productive. We've followed the usual turns around self-service IaaS
-and the like, and we're now exploring the next level of
-Platforms-as-a-Service. In exploring the options, I'm seeing two large
-patterns.</p>
-
-<p>On one hand, there are the "middleware centric and injection based"
-PaaS models. These are the ones where the developer picks a
-development middleware (Java Servlet, PHP, Node, Rails, etc), and adds
-other parts in. As if by an after thought, a static file service is
-added, or maybe a data persistance (i.e. database) service is
-added. On a implementation level, these usually involve allocating
-some compute and storage resource (e.g. a VM), installing the
-middleware container, doing a baseline install of the add-ons, and
-starting them all up inside that VM. There are some other
-configuration items such as pointing it at some version control
-repository, but also the developer is able to login onto the VM via
-shell.</p>
-
-<p>On another hand, there's a "service focused" PaaS model. This feels
-like the lesser named PaaS, though it probably has a larger install
-because this is the model that AWS largely is. In this case, the
-developer picks different service components (e.g. DB, cache,
-messaging bus, etc) and composites them a bit more
-independently. Underneath the control layer, each of the component
-providers can implement their services in different ways - using
-different VMs, processes, or internal containers (e.g. DB schemas w/
-authnz) - based on what makes sense for that provider. There's more
-work for the developer here as they have to compose services across
-different providers, and the developer doesn't have direct access to
-the underlying system, but in exchange, might have better options.</p>
-
-<p>From an implementor's perspective, I think the service focused model
-is easier to maintain. This may not necessarily be the right reason to
-go down that route, but when it comes to delivery, that matters a
-lot. It's also a bit more transportable - at this point in the
-industry's lifecycle, it'd be easier to migrate from one IaaS or
-traditional Infrastructure to another. It's also easier to extend this
-model to other (traditional?) services such as monitoring. You can see
-this in the industry - there's many different service providers
-focusing on a narrow niche offering around one specific service, but
-fewer middleware centric vendors and even those that exist tend to
-also include some service based model for the add-ons.</p>
-
-<p>As I said, most of the traditional services called PaaS are the
-form. So, what makes the application middleware so much different than
-a data store? or a caching layer? Fundamentally, you have some level
-of "service" which you want to present a clean interface to. This is
-true for the database as well as for a java servlet container, yet
-somehow we treat them a little differently in our heads. The only
-reason I can imagine is that is where time is spent. As a developer, I
-spend most of my time in the code, so that's where my mind goes. But
-while I run it, I want to have a better idea of how it fits in with
-the other component services.</p>
-
-<p>I think the vote is still out on which way has better long term
-viability. And it may never be decided on. It may just be a matter of
-preference.</p>
-
-<p>Maybe PaaS isn't the right term for this second model. These are more
-Services-as-a-Service, which seems likely to be a great way to confuse
-people. Mmaybe they're more along the lines of Infrastructure, and are
-just a different take on that. I'll admit, I'm not sure what the right
-way to refer to them is, but I believe that the use case that they
-present is more than just an implementor's fancy. It's a valid use
-case based on how developers are expecting to work with it.</p>
+<p>A lot of the above can be achieved without using The Cloud (tm), and many of the aspects run counter to each other (e.g. virtualization overhead versus flexibility). All in all that makes it impossible to say that The Cloud (tm) is goal. The goal is ultimately to make money, but the question is which aspect(s) of The Cloud (tm) do the best to get you that?</p>
 ]]></content>
   </entry>
   
