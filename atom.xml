@@ -4,7 +4,7 @@
   <title><![CDATA[CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2014-02-13T01:24:16-08:00</updated>
+  <updated>2014-07-13T00:35:29-07:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OSCON 2014 - Full Stack Development]]></title>
+    <link href="http://cmceniry.github.com/blog/2014/07/12/oscon-2014-full-stack-development/"/>
+    <updated>2014-07-12T23:44:00-07:00</updated>
+    <id>http://cmceniry.github.com/blog/2014/07/12/oscon-2014-full-stack-development</id>
+    <content type="html"><![CDATA[<p>In other news, I&#8217;m giving a tutorial on the Go language at OSCON. This
+is a big one for me so hoping it goes well.</p>
+
+<p><a href="http://oscon.com/oscon2014?cmp=ba-prog-confreg-home-os14_im_speaking"><img src="http://cdn.oreillystatic.com/en/assets/1/event/115/oscon2014_speaking_728x90.gif" width="728" height="90" title="m Speaking" alt="I"></a></p>
+
+<p>As part of the lead up to it, they sent a call out to the speakers
+asking us to comment on &#8220;full-stack development.&#8221; This was supposed to
+be submitted as a video, but I didn&#8217;t get to it in time. It was open
+ended, so not sure if it was supposed to be meaning or impact. So,
+here’s some quick thoughts on it.</p>
+
+<p>Fundamentally, being able to address the full stack is about
+autonomy. Much has been done to show that people a driven by having
+feelings of autonomy, mastery, and purpose (see Daniel Pink). The idea
+is that if we feel like we are able to own the work, we are more
+motivated to complete it. I think we can all think of personal
+projects which we’ve been caught up in and put in the extra effort on
+them. Part (yeah, only part) of what drives us is that we get to set
+the terms of the project - how it&#8217;s conceived, how it&#8217;s developed, and
+how it’s delivered.</p>
+
+<p>In many organizations, much of this work has been given to specialized
+functional units so it&#8217;s harder to have ownership in those sections.
+Thinking about he full stack let&#8217;s us insert ourselves into those
+parts of the project. Basically, being a full stack developer gives
+you more changes to get that autonomy back.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What does The Cloud(tm) mean?]]></title>
