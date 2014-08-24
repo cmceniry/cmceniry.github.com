@@ -4,7 +4,7 @@
   <title><![CDATA[CorgaLabs Blog]]></title>
   <link href="http://cmceniry.github.com/atom.xml" rel="self"/>
   <link href="http://cmceniry.github.com/"/>
-  <updated>2014-07-27T00:14:57-07:00</updated>
+  <updated>2014-08-23T21:30:39-07:00</updated>
   <id>http://cmceniry.github.com/</id>
   <author>
     <name><![CDATA[Chris McEniry]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Why do I do DefCon?]]></title>
+    <link href="http://cmceniry.github.com/blog/2014/08/23/why-do-i-do-defcon/"/>
+    <updated>2014-08-23T21:24:00-07:00</updated>
+    <id>http://cmceniry.github.com/blog/2014/08/23/why-do-i-do-defcon</id>
+    <content type="html"><![CDATA[<p>For some reason, I&#8217;m in a reflective mode, so this entry is going to be a bit on
+the narcissistic and cathartic side. Feel free to pass on this one as it&#8217;s
+mostly for me.</p>
+
+<p>Just spent the last few weeks doing a bit of conferences and running around.
+This is that fine time of year for me where I&#8217;m away more than I&#8217;m present. It
+definitely takes its toll, both physically and mentally. A lot of the time, I
+don&#8217;t get to see talks, I don&#8217;t end up at parties (my choice), I don&#8217;t end up
+passed out drunk (only so much when you limit yourself to frufru drinks), and I
+don&#8217;t end up with anything interesting to show of it. At the same time, I put up
+with some assholes, and some people who aren&#8217;t too sure what they&#8217;re doing (to
+put it nicely).</p>
+
+<p>So why do I do it?</p>
+
+<p>I have to admit that I started it just to be a part of it. To be able to say
+that I was big and badass. I&#8217;ve always like the CyberPunk motif and to be a part
+of it is such a feeling. It&#8217;s not necessarily the best reason, but I have to
+admit to myself and others as to why.</p>
+
+<p>As I said, I&#8217;m not really in it for the parties, or the debauchery (well, I
+could be talked into that one ;)), or the interaction with thousands of people,
+or the purposeful trolling.</p>
+
+<p>For me, the best reason I think of is that it&#8217;s really about the doing. Seeing
+what you can accomplish. Digging under the surface and seeing more than what
+others see. Finding out. Exploring. Basically, a bunch of the fun stuff that
+people ascribe to the &#8220;hacker ethos.&#8221;  I consider myself a lifetime learner and
+tinkerer, and this reinforces it. From the world class expert telling the world
+what she knows, to the newbie who is just there to find out why he can find,
+it&#8217;s all there.</p>
+
+<p>I think I finally heard it this year. Not sure why it took me this long, but
+there&#8217;s a focus on The Community. DefCon is a conference that is better because
+of the attendees. If you show up, there&#8217;s a good chance that you&#8217;re going to be
+participating, and not just watching. If you&#8217;re just watching, you&#8217;re watching
+the other attendees as much as any organizer. As organizers, we&#8217;re there to
+create the space so that you can give all you want to give.</p>
+
+<p>We want you to have fun.</p>
+
+<p>I want to have fun. And I have fun by doing. So, that&#8217;s why I do DefCon.</p>
+
+<p>I think one of the big things for me to work on over the coming years is to be
+more a part of The Community, and the family. Not sure how to make that happen,
+but something about the first step being recognize it.</p>
+
+<p>One last call out. To my fellow goons, those that I know and those that I don&#8217;t,
+I salute you. Everyone of you impress me and inspire me to be a better goon.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Stepping Up the San Diego Computer Tech Community]]></title>
@@ -35,7 +92,7 @@
 
 <p>Location: I think this is a matter of being a bit flexible (stealing this from some comments on <a href="http://anonymoushash.vmbrasseur.com/2014/07/15/san-francisco-perl-mongers-12-months-50-growth/">SF Perl Mongers</a> - interesting to see them talking about how to address not being as involved as they&#8217;d like. To that, I&#8217;m gonna start by making it a bit optional. I think getting some video recordings or live streaming going is step 1. Beyond that, probably playing with the actual location or timing will help us find the right fit. I think long term, it&#8217;s best to have some stability, but in the short term, we probably have to experiment a bit to see what the community wants.</p>
 
-<p>Support: I know that some company support has been coming. It&#8217;s time to extend this into reaching out to other groups and see what we can do to support each other. Maybe offering some goods and services, or location, or joint meetings. I&#8217;m not sure, but this is an area to take a look at. Reaching out will be fun, since I know I&#8217;m an <a href="http://www.sinfest.net/view.php?date=2013-10-14">Introvert</a></p>
+<p>Support: I know that some company support has been coming. It&#8217;s time to extend this into reaching out to other groups and see what we can do to support each other. Maybe offering some goods and services, or location, or joint meetings. I&#8217;m not sure, but this is an area to take a look at. Reaching out will be fun, since I know I&#8217;m an <a href="http://www.sinfest.net/view.php?date=2013-10-14">Introvert</a>.</p>
 
 <p>Topics/Discussion: This one is kinda making me scratch my head. There&#8217;s so much out there. I think the key is to just take some topics and run with them.</p>
 
@@ -1636,64 +1693,6 @@ descriptions.</p>
 <p>And yes, I know you can do execs in Puppet, so you can shoot yourself
 in the foot, but you&#8217;ll have less misfires with Puppet than with other
 tools because of the way it makes you think.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[First post]]></title>
-    <link href="http://cmceniry.github.com/blog/2012/01/29/first-post/"/>
-    <updated>2012-01-29T16:44:00-08:00</updated>
-    <id>http://cmceniry.github.com/blog/2012/01/29/first-post</id>
-    <content type="html"><![CDATA[<p>Got <a href="http://octopress.org/">Octopress</a> up and running. I like the idea
-of a staticly deployed blog using a simple wiki-like mark up
-language. I lose comments, but part of me thinks that having a blog is
-a minimum for participating in the discussion. It&#8217;s a bit much, but
-I&#8217;ll wait to see if it becomes an issue and figure it out then. For
-now, I have a blog, so I&#8217;m going to focus on the writing.</p>
-
-<p>Ran into a few issues setting up Octopress - somewhat my own
-fault. The first was that I switched from rvm to rbenv. Wasn&#8217;t really
-an issue, but rvm feels more ready for prime time on OSX Lion. I had
-trouble getting ruby to build, and had to switch from LLVM to GCC. I
-would think that it shouldn&#8217;t matter, but it seems to. I
-<a href="https://github.com/kennethreitz/osx-gcc-installer/downloads">kennethretiz&#8217;s prebuilt packages</a>
-to be the best install.</p>
-
-<p>After that, got to the point where I do &#8216;bundle install&#8217; from the
-Octopress clone, and it started complaining about not finding
-&#8216;stdio.h&#8217; when building fsevent_watch. <a href="https://github.com/imathis/octopress/issues/320">Others have seen this
-before</a>, but really
-the issue is being <a href="https://github.com/thibaudgg/rb-fsevent/issues/20">addressed</a>
-by the fsevent gem. Ends up being some fun differences between LLVM
-and GCC again. I switched over to the prebuilt fsevent gem, and that
-worked. Just a simple change in &#8216;Gemfile&#8217;:</p>
-
-<pre><code>gem 'rubypants'
--gem 'rb-fsevent'
-+gem 'rb-fsevent', :git =&gt; 'git://github.com/ttilley/rb-fsevent.git', :branch =&gt; 'pre-compiled-gem-one-off'
-gem 'stringex'
-</code></pre>
-
-<p>Those are the main build issues, but also ran into a couple of issues
-working with Octopress.</p>
-
-<p>The first usage issue is that I&#8217;m still trying to figure out the
-overall git workflow. You do a clone of the Octopress repo, and then
-work within that clone. This seems a bit unclean to me. I want to keep
-my actual blog source and the Octopress source separate, even if the
-Octopress source is tracking. Add to that that I&#8217;m sending the site up
-to Github&#8217;s personal pages for hosting it, so that has its own
-repo. Just seems like this will bite me at some point.</p>
-
-<p>The second issue is just getting familiar with markdown. I&#8217;m finding
-out some of its limits, like how it can&#8217;t embed block quotes inside
-numbered items. Nothing major, just learning myself.</p>
-
-<p>But, Octopress is up and running, and posting to the Intarwebs, so
-that has to be considered a success. Now I get to move on to the real
-content.</p>
-
-<p>&#8211;mac</p>
 ]]></content>
   </entry>
   
